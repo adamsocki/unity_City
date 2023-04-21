@@ -20,13 +20,14 @@ public class PlayerObjectPlacer : MonoBehaviour
         mainCamera = Camera.main;
         if (objectToPlace)
         {
-            objectToPlace.transform.position = hiddenPosition;
+            objectToPlace.transform.position = hiddenPosition; 
+            objectToPlace.layer = LayerMask.NameToLayer("PreviewObject");
         }
     }
 
     public void UpdateObjectPosition()
-    {
-        if (!uiController.isObjectSelected)
+    {   
+        if (!uiController.isInPlacementMode)
         {
             if (objectToPlace)
             {

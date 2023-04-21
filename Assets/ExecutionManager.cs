@@ -7,12 +7,14 @@ public class ExecutionManager : MonoBehaviour
 
     public PlayerManager playerManager;
     public UIController uiController;
+    public TimeManager timeManager;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
@@ -20,5 +22,6 @@ public class ExecutionManager : MonoBehaviour
     {
         uiController.UpdateUI();
         playerManager.UpdatePlayer();
+        timeManager.UpdateTimeManager();
     }
 }

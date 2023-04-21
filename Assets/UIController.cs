@@ -4,36 +4,50 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
-
     public PlayerObjectPlacer playerObjectPlacer;
     public GameObject objectPrefab1;
     public GameObject objectPrefab2;
+    public EntityManager entityManager; 
+    public MouseInteractionManager mouseInteractionManager;
 
     [HideInInspector]
-    public bool isObjectSelected = false;
+    public bool isInPlacementMode = false;
 
     public void UpdateUI()
     {
-        if (Input.GetMouseButtonDown(0) && isObjectSelected)
+        if (Input.GetMouseButtonDown(0) && isInPlacementMode)
         {
-            DeselectObject();
+            // Assuming objectToPlace is your object prefab and position is where you want to place it
+            if (!mouseInteractionManager.IsObjectOverlap(playerObjectPlacer.objectToPlace, playerObjectPlacer.objectToPlace.transform.position))
+            {
+                // Instantiate the object and add it to the EntityManager
+                entityManager.InstantiateObject(playerObjectPlacer);
+            }
+            else
+            {
+                // Object overlaps with existing objects, do not instantiate it
+                print("this shouldn't be");
+            }
+            DeplaceObject();
         }
     }
 
     public void SetPlaceableObject1()
     {
         playerObjectPlacer.objectToPlace = objectPrefab1;
-        isObjectSelected = true;
+        isInPlacementMode = true;
     }
 
     public void SetPlaceableObject2()
     {
         playerObjectPlacer.objectToPlace = objectPrefab2;
-        isObjectSelected = true;
+        isInPlacementMode = true;
     }
 
-    public void DeselectObject()
+    public void DeplaceObject()
     {
-        isObjectSelected = false;
+        isInPlacementMode = false;
     }
+
+    
 }
