@@ -41,7 +41,7 @@ public class UIController : MonoBehaviour
     public bool isInPlacementMode = false;
 
     public void UpdateUI()
-    {
+    { 
         if (Input.GetMouseButtonDown(0) && isInPlacementMode)
         {
             if (!mouseInteractionManager.IsObjectOverlap(playerObjectPlacer.objectToPlace.transform.position))
