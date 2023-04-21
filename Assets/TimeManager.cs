@@ -12,7 +12,6 @@ public class TimeManager : MonoBehaviour
     // Time scale for how quickly time passes in your game (1 = real-time, higher numbers = faster)
     public float timeScale = 1f;
 
-
     public void UpdateTimeManager()
     {
         UpdateTimeOfDay();
@@ -28,9 +27,12 @@ public class TimeManager : MonoBehaviour
 
         // Format the time as HH:MM:SS
         string formattedTime = TimeSpan.FromHours(timeOfDay).ToString(@"hh\:mm\:ss");
-        Debug.Log("Time of Day: " + formattedTime);
+        //Debug.Log("Time of Day: " + formattedTime);
     }
 
-
+    public string GetFormattedTime()
+    {
+        return TimeSpan.FromHours(timeOfDay).ToString(@"hh\:mm\:ss");
+    }
 
 }

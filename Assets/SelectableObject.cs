@@ -18,7 +18,7 @@ public class SelectableObject : MonoBehaviour
         if (!isSelected)
         {
             OnMouseOverObject.Invoke();
-            DebugManager.PrintError();
+           // DebugManager.PrintError();
         }
     }
 

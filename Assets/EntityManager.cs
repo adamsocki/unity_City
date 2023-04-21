@@ -23,6 +23,7 @@ public class EntityManager : MonoBehaviour
         }
     }
 
+    public EntityFactory entityFactory;
     private Dictionary<int, Index> entities = new Dictionary<int, Index>();
     private int nextEntityId = 0;
 
@@ -46,24 +47,9 @@ public class EntityManager : MonoBehaviour
     {
         entities.Remove(handle.id);
     }
-
-
-
-
-    public void InstantiateObject(PlayerObjectPlacer playerObjectPlacer)
+    public void PlaceEntity(EntityFactory.EntityType entityType, GameObject entityPrefab, Vector3 position, Quaternion rotation)
     {
-        if (playerObjectPlacer.objectToPlace)
-        {
-            // Instantiate the object and add it to the EntityManager
-            GameObject newObject = Instantiate(playerObjectPlacer.objectToPlace, playerObjectPlacer.objectToPlace.transform.position, playerObjectPlacer.objectToPlace.transform.rotation);
-            Handle handle = AddEntity(newObject);
-
-            // Set the handle on the Entity component of the instantiated object
-            Entity entityComponent = newObject.GetComponent<Entity>();
-            entityComponent.SetHandle(handle);
-
-            // Remove the layerMask by setting the layer to a different layer
-            newObject.layer = LayerMask.NameToLayer("Default");
-        }
+        entityFactory.CreateEntity(entityType, position, rotation);
     }
+   
 }

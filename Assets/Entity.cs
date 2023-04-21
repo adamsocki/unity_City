@@ -11,3 +11,11 @@ public class Entity : MonoBehaviour
         this.handle = handle;
     }
 }
+
+
+public class Resident : Entity
+{
+    public string name;
+    public int age;
+    public GameObject home;
+}

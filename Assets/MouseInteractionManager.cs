@@ -6,9 +6,11 @@ public class MouseInteractionManager : MonoBehaviour
 {
     // Add a reference to your EntityManager
     public EntityManager entityManager;
+    public PlayerObjectPlacer playerObjectPlacer;
 
     public string groundLayerName = "Ground";
     private SelectableObject currentMousedOverObject;
+
 
     public void UpdateMouseInteraction()
     {
@@ -18,11 +20,15 @@ public class MouseInteractionManager : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             string hitLayerName = LayerMask.LayerToName(hit.transform.gameObject.layer);
-
+            
             switch (hitLayerName)
             {
+                case "Default":
+                    print("HITTING");
+                    break;
                 case "Ground":
                     // Ground detected
+                   // print("Ground");
                     // Add your ground interaction logic here
                     break;
                 default:
@@ -80,25 +86,33 @@ public class MouseInteractionManager : MonoBehaviour
         return layerMask;
     }
 
+    
 
-    public bool IsObjectOverlap(GameObject objectPrefab, Vector3 position)
+    public bool IsObjectOverlap(Vector3 position)
     {
+        Debug.Log("IsObjectOverlap called");
         // Get the bounds of the object
-        Bounds bounds = objectPrefab.GetComponent<Collider>().bounds;
+        Bounds bounds = playerObjectPlacer.GetBounds();
+        bounds.center = position;
 
         // Check for overlaps using Physics.OverlapBox
         int layerMask = BuildLayerMaskWithoutPreviewObjectAndGround();
-        Collider[] colliders = Physics.OverlapBox(position, bounds.extents, Quaternion.identity, layerMask);
+        Collider[] colliders = Physics.OverlapBox(bounds.center, bounds.extents, Quaternion.identity, layerMask);
 
         // If there are overlapping colliders, return true
         if (colliders.Length > 0)
         {
+            Debug.Log("Overlap detected");
             return true;
         }
 
         // No overlaps found, return false
+        Debug.Log("Overlap not detected");
         return false;
     }
+
+
+
 
 
 }

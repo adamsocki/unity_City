@@ -17,5 +17,6 @@ public class PlayerManager : MonoBehaviour
     {
         cameraController.UpdateCamera();
         playerObjectPlacer.UpdateObjectPosition();
+        
     }
 }
