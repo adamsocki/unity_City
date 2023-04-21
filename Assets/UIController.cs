@@ -51,7 +51,7 @@ public class UIController : MonoBehaviour
                 entityManager.PlaceEntity(playerObjectPlacer.entityType, playerObjectPlacer.objectToPlace, playerObjectPlacer.objectToPlace.transform.position, playerObjectPlacer.objectToPlace.transform.rotation);
             }
             else
-            {
+            { 
                 // Object overlaps with existing objects, do not instantiate it
                 print("this shouldn't be");
             }
