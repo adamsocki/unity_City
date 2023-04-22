@@ -24,7 +24,7 @@ public class CameraController : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal") * movementSpeed * Time.deltaTime;
         float vertical = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
 
-        camera.transform.Translate(horizontal, 0, vertical);
+        camera.transform.Translate(horizontal, 0, vertical, Space.World);
 
         // Edge Movement
         Vector3 edgeMovement = Vector3.zero;

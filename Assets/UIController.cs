@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIController : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class UIController : MonoBehaviour
     public BuildingManager buildingManager;
     public MouseInteractionManager mouseInteractionManager;
 
-    public Text timeText;
+    public TextMeshProUGUI timeText;
     public Button increaseTimeButton;
     public Button decreaseTimeButton;
     public Button pauseTimeButton;
@@ -23,6 +24,8 @@ public class UIController : MonoBehaviour
 
     public Button placeBuildingButton;
     public Button placeRoadButton;
+
+    public TextMeshProUGUI buildingCountText;
 
     [HideInInspector]
     public bool isInPlacementMode = false;
@@ -67,6 +70,10 @@ public class UIController : MonoBehaviour
         {
             TogglePlacementMode();
         }
+        // DISPLAY TIME
+
+        timeText.SetText("Time: " + timeManager.GetFormattedTime());
+        buildingCountText.SetText("Buildings: " + buildingManager.GetBuildingCount());
 
     }
 

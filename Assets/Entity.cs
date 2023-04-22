@@ -17,5 +17,15 @@ public class Resident : Entity
 {
     public string name;
     public int age;
-    public GameObject home;
+    public Building home;
+}
+
+
+public class Building : Entity
+{
+    public string name;
+    public int age;
+    public int total;
+    public int totalResidentialUnits;
+   // public GameObject home;
 }
