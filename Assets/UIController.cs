@@ -24,6 +24,8 @@ public class UIController : MonoBehaviour
     public Button placeBuildingButton;
     public Button placeRoadButton;
 
+    [HideInInspector]
+    public bool isInPlacementMode = false;
 
 
 
@@ -37,15 +39,17 @@ public class UIController : MonoBehaviour
         pauseTimeButton.onClick.AddListener(PauseTimeScale);
     }
 
-    [HideInInspector]
-    public bool isInPlacementMode = false;
 
     public void UpdateUI()
     { 
         if (Input.GetMouseButtonDown(0) && isInPlacementMode)
         {
-            if (!mouseInteractionManager.IsObjectOverlap(playerObjectPlacer.objectToPlace.transform.position))
+            if (!mouseInteractionManager.IsObjectOverlap(playerObjectPlacer.objectToPlace.transform.position) )
             {
+                if (!playerObjectPlacer.inPlaceableRange)
+                {
+                    return;
+                }
                 // Use the EntityManager to instantiate the object.
                 Debug.Log("Overlap check passed");
                 entityManager.PlaceEntity(playerObjectPlacer.entityType, playerObjectPlacer.objectToPlace, playerObjectPlacer.objectToPlace.transform.position, playerObjectPlacer.objectToPlace.transform.rotation);
@@ -53,23 +57,42 @@ public class UIController : MonoBehaviour
             else
             { 
                 // Object overlaps with existing objects, do not instantiate it
+                // TODO: Make indication that object cannot be placed here
                 print("this shouldn't be");
             }
-            DeplaceObject();
         }
-    
+
+        // Check if isInPlacementMode is true and Escape key is pressed to toggle placement mode off
+        if (isInPlacementMode && Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePlacementMode();
+        }
+
     }
+
+
+    public void TogglePlacementMode()
+    {
+        isInPlacementMode = !isInPlacementMode;
+
+        /*if (!isInPlacementMode)
+        {
+            // If exiting placement mode, reset object position
+            DeplaceObject();
+        }*/
+    }
+
 
     public void SetPlaceableObject(GameObject objectPrefab, EntityFactory.EntityType entityType)
     {
         playerObjectPlacer.objectToPlace = objectPrefab;
         playerObjectPlacer.entityType = entityType;
-        isInPlacementMode = true;
+        TogglePlacementMode();
     }
 
     public void DeplaceObject()
     {
-        isInPlacementMode = false;
+        TogglePlacementMode();
     }
 
 

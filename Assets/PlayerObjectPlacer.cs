@@ -16,6 +16,7 @@ public class PlayerObjectPlacer : MonoBehaviour
     public UIController uiController;
 
     private Vector3 hiddenPosition = new Vector3(0, -1000, 0);
+    public bool inPlaceableRange;
 
 
     void Start()
@@ -48,6 +49,7 @@ public class PlayerObjectPlacer : MonoBehaviour
             if (objectToPlace)
             {
                 objectToPlace.transform.position = hiddenPosition;
+                inPlaceableRange = false;
             }
             return; // exits the UpdateObjectPosition()
         }
@@ -55,9 +57,16 @@ public class PlayerObjectPlacer : MonoBehaviour
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer)) // detect if in placeable Range (ground)
         {
             objectToPlace.transform.position = hit.point;
+            inPlaceableRange = true;
         }
+        else
+        {
+            objectToPlace.transform.position = hiddenPosition;
+            inPlaceableRange = false;
+        }
+
     }
 }
