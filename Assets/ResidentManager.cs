@@ -27,7 +27,7 @@ public class ResidentManager : MonoBehaviour
         residents.Add(newResident);
     }
 
-    public int GetNumResidents()
+    public int GetResidentCount()
     {
         return residents.Count;
     }

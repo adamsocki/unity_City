@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using static BuildingManager;
 
 public class BuildingManager : MonoBehaviour
@@ -9,8 +11,7 @@ public class BuildingManager : MonoBehaviour
 
 
     public EntityManager entityManager;
-    private int buildingCount;
-
+    private List<GameObject> buildings = new List<GameObject>();
 
     public enum BuildingType
     {
@@ -41,13 +42,13 @@ public class BuildingManager : MonoBehaviour
             Entity entityComponent = newEntity.GetComponent<Entity>();
             entityComponent.SetHandle(handle);
 
-            buildingCount++;
+            buildings.Add(newEntity);
         }
     }
 
     public int GetBuildingCount()
     {
-        return buildingCount;
+        return buildings.Count;
     }
 
 }
