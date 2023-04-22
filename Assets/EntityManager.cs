@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static BuildingManager;
 
 public class EntityManager : MonoBehaviour
 {
@@ -47,9 +48,9 @@ public class EntityManager : MonoBehaviour
     {
         entities.Remove(handle.id);
     }
-    public void PlaceEntity(EntityFactory.EntityType entityType, GameObject entityPrefab, Vector3 position, Quaternion rotation)
+    public void PlaceEntity(EntityFactory.EntityType entityType, Vector3 position, Quaternion rotation, BuildingType? buildingType = null)
     {
-        entityFactory.CreateEntity(entityType, position, rotation);
+        entityFactory.CreateEntity(entityType, position, rotation, buildingType);
     }
-   
+
 }

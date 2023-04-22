@@ -24,7 +24,7 @@ public class MouseInteractionManager : MonoBehaviour
             switch (hitLayerName)
             {
                 case "Default":
-                    print("HITTING");
+                   // print("HITTING");
                     break;
                 case "Ground":
                     // Ground detected

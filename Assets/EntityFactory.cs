@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static BuildingManager;
 
 public class EntityFactory : MonoBehaviour
 {
@@ -14,12 +15,19 @@ public class EntityFactory : MonoBehaviour
     public RoadManager roadManager;
     public EntityManager entityManager;
 
-    public void CreateEntity(EntityType entityType, Vector3 position, Quaternion rotation)
+    public void CreateEntity(EntityType entityType, Vector3 position, Quaternion rotation, BuildingType? buildingType = null)
     {
         switch (entityType)
         {
             case EntityType.Building:
-                buildingManager.PlaceEntity(position, rotation);
+                if (buildingType.HasValue)
+                {
+                    buildingManager.PlaceEntity(buildingType.Value, position, rotation);
+                }
+                else
+                {
+                    Debug.LogError("No building type provided for EntityType.Building");
+                }
                 break;
             case EntityType.Road:
                 roadManager.PlaceEntity(position, rotation);

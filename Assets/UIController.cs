@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using static BuildingManager;
 
 public class UIController : MonoBehaviour
 {
     public PlayerObjectPlacer playerObjectPlacer;
     public GameObject roadPrefab;
-   // public GameObject objectPrefab;
-    public GameObject buildingPrefab;
+    public GameObject portOfEntryBuildingPrefab;
+    public GameObject residentialBuildingPrefab;
     public EntityManager entityManager;
     public EntityFactory entityFactory;
     public BuildingManager buildingManager;
@@ -22,7 +23,8 @@ public class UIController : MonoBehaviour
 
     public TimeManager timeManager;
 
-    public Button placeBuildingButton;
+    public Button placeResidentialBuildingButton;
+    public Button placePortOfEntryBuildingButton;
     public Button placeRoadButton;
 
     public TextMeshProUGUI buildingCountText;
@@ -34,7 +36,8 @@ public class UIController : MonoBehaviour
 
     public void InitUIController()
     {
-        placeBuildingButton.onClick.AddListener(() => SetPlaceableObject(buildingPrefab, EntityFactory.EntityType.Building));
+        placeResidentialBuildingButton.onClick.AddListener(() => SetPlaceableObject(residentialBuildingPrefab, EntityFactory.EntityType.Building, BuildingManager.BuildingType.Residential1));
+        placePortOfEntryBuildingButton.onClick.AddListener(() => SetPlaceableObject(portOfEntryBuildingPrefab, EntityFactory.EntityType.Building, BuildingManager.BuildingType.PortOfEntry));
         placeRoadButton.onClick.AddListener(() => SetPlaceableObject(roadPrefab, EntityFactory.EntityType.Road));
 
         increaseTimeButton.onClick.AddListener(IncreaseTimeScale);
@@ -54,8 +57,8 @@ public class UIController : MonoBehaviour
                     return;
                 }
                 // Use the EntityManager to instantiate the object.
-                Debug.Log("Overlap check passed");
-                entityManager.PlaceEntity(playerObjectPlacer.entityType, playerObjectPlacer.objectToPlace, playerObjectPlacer.objectToPlace.transform.position, playerObjectPlacer.objectToPlace.transform.rotation);
+                entityManager.PlaceEntity(playerObjectPlacer.entityType, playerObjectPlacer.objectToPlace.transform.position, playerObjectPlacer.objectToPlace.transform.rotation, playerObjectPlacer.buildingType);
+
             }
             else
             { 
@@ -90,8 +93,12 @@ public class UIController : MonoBehaviour
     }
 
 
-    public void SetPlaceableObject(GameObject objectPrefab, EntityFactory.EntityType entityType)
+    public void SetPlaceableObject(GameObject objectPrefab, EntityFactory.EntityType entityType, BuildingType? buildingType = null)
     {
+        if (buildingType.HasValue)
+        {
+            playerObjectPlacer.buildingType = buildingType.Value;
+        }
         playerObjectPlacer.objectToPlace = objectPrefab;
         playerObjectPlacer.entityType = entityType;
         TogglePlacementMode();

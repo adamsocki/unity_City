@@ -8,6 +8,7 @@ public class PlayerObjectPlacer : MonoBehaviour
     public GameObject objectToPlace;
 
     public EntityFactory.EntityType entityType;
+    public BuildingManager.BuildingType buildingType;
 
 
     public LayerMask groundLayer;
