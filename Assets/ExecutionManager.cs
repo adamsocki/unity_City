@@ -11,12 +11,14 @@ public class ExecutionManager : MonoBehaviour
     public TimeManager timeManager;
     public MouseInteractionManager mouseInteractionManager;
 
+    public ExpandableMenuController expandableMenuController;
 
 
     // Start is called before the first frame update
     void Start()
     {
         uiController.InitUIController();
+        expandableMenuController.InitExpandableMenuController();
     }
 
     // Update is called once per frame
