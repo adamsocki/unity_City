@@ -20,7 +20,7 @@ public class PlayerObjectPlacer : MonoBehaviour
     public bool inPlaceableRange;
 
 
-    void Start()
+    public void InitPlayerObjectPlacer()
     {
         mainCamera = Camera.main;
         if (objectToPlace)

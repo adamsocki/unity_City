@@ -8,11 +8,13 @@ public class EntityFactory : MonoBehaviour
     public enum EntityType
     {
         Building,
-        Road
+        Road,
+        Resident
     }
 
     public BuildingManager buildingManager;
     public RoadManager roadManager;
+    public ResidentManager residentManager;
     public EntityManager entityManager;
 
     public void CreateEntity(EntityType entityType, Vector3 position, Quaternion rotation, BuildingType? buildingType = null)
@@ -31,6 +33,9 @@ public class EntityFactory : MonoBehaviour
                 break;
             case EntityType.Road:
                 roadManager.PlaceEntity(position, rotation);
+                break;
+            case EntityType.Resident:
+                residentManager.PlaceEntity(position, rotation);
                 break;
         }
 

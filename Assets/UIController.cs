@@ -40,9 +40,9 @@ public class UIController : MonoBehaviour
         placePortOfEntryBuildingButton.onClick.AddListener(() => SetPlaceableObject(portOfEntryBuildingPrefab, EntityFactory.EntityType.Building, BuildingManager.BuildingType.PortOfEntry));
         placeRoadButton.onClick.AddListener(() => SetPlaceableObject(roadPrefab, EntityFactory.EntityType.Road));
 
-        increaseTimeButton.onClick.AddListener(IncreaseTimeScale);
-        decreaseTimeButton.onClick.AddListener(DecreaseTimeScale);
-        pauseTimeButton.onClick.AddListener(PauseTimeScale);
+       // increaseTimeButton.onClick.AddListener(IncreaseTimeScale);
+        //decreaseTimeButton.onClick.AddListener(DecreaseTimeScale);
+       // pauseTimeButton.onClick.AddListener(PauseTimeScale);
     }
 
 

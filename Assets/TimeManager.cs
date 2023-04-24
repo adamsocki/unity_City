@@ -12,6 +12,9 @@ public class TimeManager : MonoBehaviour
     // Time scale for how quickly time passes in your game (1 = real-time, higher numbers = faster)
     public float timeScale = 1f;
 
+
+    
+
     public void UpdateTimeManager()
     {
         UpdateTimeOfDay();

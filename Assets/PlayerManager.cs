@@ -7,10 +7,9 @@ public class PlayerManager : MonoBehaviour
     public CameraController cameraController;
     public PlayerObjectPlacer playerObjectPlacer;
 
-    void Start()
+    public void InitPlayerManager()
     {
-        
-
+        playerObjectPlacer.InitPlayerObjectPlacer();
     }
 
     public void UpdatePlayer()

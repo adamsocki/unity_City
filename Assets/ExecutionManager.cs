@@ -10,6 +10,7 @@ public class ExecutionManager : MonoBehaviour
    // public CustomUIController customUIController;
     public TimeManager timeManager;
     public MouseInteractionManager mouseInteractionManager;
+    public PopulationManager populationManager;
 
     public ExpandableMenuController expandableMenuController;
 
@@ -19,6 +20,7 @@ public class ExecutionManager : MonoBehaviour
     {
         uiController.InitUIController();
         expandableMenuController.InitExpandableMenuController();
+        playerManager.InitPlayerManager();
     }
 
     // Update is called once per frame
@@ -27,6 +29,7 @@ public class ExecutionManager : MonoBehaviour
         //customUIController.UpdateUI();
         uiController.UpdateUI();
         playerManager.UpdatePlayer();
+        populationManager.UpdatePopulationManager();
         timeManager.UpdateTimeManager();
         mouseInteractionManager.UpdateMouseInteraction();
     }

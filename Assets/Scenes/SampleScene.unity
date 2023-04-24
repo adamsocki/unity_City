@@ -1139,6 +1139,7 @@ MonoBehaviour:
   uiController: {fileID: 252649990}
   timeManager: {fileID: 524979869}
   mouseInteractionManager: {fileID: 989496775}
+  populationManager: {fileID: 710060300}
   expandableMenuController: {fileID: 2030052932}
 --- !u!4 &672295449
 Transform:
@@ -1258,6 +1259,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 710060299}
+  - component: {fileID: 710060300}
   m_Layer: 0
   m_Name: PopulationManager
   m_TagString: Untagged
@@ -1280,6 +1282,22 @@ Transform:
   m_Father: {fileID: 2096446815}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &710060300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710060298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 379c23aabc1066548a90295c98d23dbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityManager: {fileID: 228374453}
+  residentManager: {fileID: 805807795}
+  timeBetweenSpawn_test: 1
+  timeSinceLastSpawn_test: 0
 --- !u!1 &730205434
 GameObject:
   m_ObjectHideFlags: 0
@@ -1451,6 +1469,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 805807794}
+  - component: {fileID: 805807795}
   m_Layer: 0
   m_Name: ResidentManager
   m_TagString: Untagged
@@ -1473,6 +1492,21 @@ Transform:
   m_Father: {fileID: 2096446815}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &805807795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805807793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23dbd60e66d27f04784df4ef8dba9d7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  residentPrefab: {fileID: 420647900}
+  spawnInterval: 1
+  entityManager: {fileID: 228374453}
 --- !u!1 &883016548
 GameObject:
   m_ObjectHideFlags: 0
@@ -3054,6 +3088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingManager: {fileID: 641256032}
   roadManager: {fileID: 2121879743}
+  residentManager: {fileID: 805807795}
   entityManager: {fileID: 228374453}
 --- !u!1 &2012782912
 GameObject:
