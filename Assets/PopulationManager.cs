@@ -40,5 +40,8 @@ public class PopulationManager : MonoBehaviour
     {
         timeSinceLastSpawn_test += Time.deltaTime;
         TrySpawnResident();
+    
+        residentManager.UpdateResidents();
+    
     }
 }

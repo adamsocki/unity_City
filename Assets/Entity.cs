@@ -13,13 +13,6 @@ public class Entity : MonoBehaviour
 }
 
 
-public class Resident : Entity
-{
-    public string name;
-    public int age;
-    public Building home;
-}
-
 
 public class Building : Entity
 {

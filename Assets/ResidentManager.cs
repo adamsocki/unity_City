@@ -5,13 +5,12 @@ using UnityEngine;
 public class ResidentManager : MonoBehaviour
 {
     public GameObject residentPrefab;
-   // public Transform spawnPoint;
-    public float spawnInterval = 10f;
-
     public EntityManager entityManager;
 
-    private List<GameObject> residents = new List<GameObject>();
+    private List<Resident> residents = new List<Resident>();
+   
     private float spawnTimer;
+    public float spawnInterval = 10f;
 
 
     //void Update()
@@ -28,7 +27,8 @@ public class ResidentManager : MonoBehaviour
     {
         Vector3 spawnLocation_test = new Vector3(0.0f, 0.0f, 0.0f);
         GameObject newResident = Instantiate(residentPrefab, spawnLocation_test, Quaternion.identity);
-        residents.Add(newResident);
+        Resident resident = newResident.GetComponent<Resident>();
+        residents.Add(resident);
     }
 
     public int GetResidentCount()
@@ -46,6 +46,16 @@ public class ResidentManager : MonoBehaviour
             EntityManager.Handle handle = entityManager.AddEntity(newEntity);
             Entity entityComponent = newEntity.GetComponent<Entity>();
             entityComponent.SetHandle(handle);
+        }
+    }
+
+
+
+    public void UpdateResidents()
+    {
+        for (int i = 0; i < residents.Count; i++)
+        {
+            residents[i].UpdateResident();
         }
     }
 
