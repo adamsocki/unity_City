@@ -13,12 +13,3 @@ public class Entity : MonoBehaviour
 }
 
 
-
-public class Building : Entity
-{
-    public string name;
-    public int age;
-    public int total;
-    public int totalResidentialUnits;
-   // public GameObject home;
-}

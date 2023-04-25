@@ -10,7 +10,7 @@ public class Resident : MonoBehaviour
 
     private MovementController movementController;
 
-    private void Awake()
+    public void InitResident()
     {
         movementController = GetComponent<MovementController>();
     }

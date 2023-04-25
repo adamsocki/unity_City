@@ -28,6 +28,7 @@ public class ResidentManager : MonoBehaviour
         Vector3 spawnLocation_test = new Vector3(0.0f, 0.0f, 0.0f);
         GameObject newResident = Instantiate(residentPrefab, spawnLocation_test, Quaternion.identity);
         Resident resident = newResident.GetComponent<Resident>();
+        resident.InitResident();
         residents.Add(resident);
     }
 
