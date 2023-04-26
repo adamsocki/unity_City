@@ -34,5 +34,6 @@ public class ExecutionManager : MonoBehaviour
         populationManager.UpdatePopulationManager();
         timeManager.UpdateTimeManager();
         mouseInteractionManager.UpdateMouseInteraction();
+        buildingManager.UpdateBuildingManager();
     }
 }

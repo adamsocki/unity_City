@@ -11,8 +11,14 @@ public class BuildingManager : MonoBehaviour
     public GameObject residential1Prefab; // Assign your building prefab in the editor
     public GameObject portOfEntryPrefab; // Assign your building prefab in the editor
 
+    public ResidentialUnit residentialUnitDataTemplate;
+    public CommercialUnit commercialUnitDataTemplate;
+
+
     public BuildingData residentialBuildingData;
     public BuildingData portOfEntryData;
+
+    
 
     public EntityManager entityManager;
     //private List<BuildingInfo> buildings = new List<BuildingInfo>();
@@ -61,7 +67,22 @@ public class BuildingManager : MonoBehaviour
 
             BuildingController buildingController = newEntity.GetComponent<BuildingController>();
             buildingController.Initialize(buildingData);
+            // Instantiate and add units to the buildingData object
 
+            if (buildingData is Residential1 residential1Data)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    ResidentialUnit newResidentialUnit = Instantiate(residentialUnitDataTemplate);
+                    residential1Data.units.Add(newResidentialUnit);
+                }
+
+                for (int i = 0; i < 6; i++)
+                {
+                    CommercialUnit newCommercialUnit = Instantiate(commercialUnitDataTemplate);
+                    residential1Data.units.Add(newCommercialUnit);
+                }
+            }
         }
     }
 
@@ -71,5 +92,41 @@ public class BuildingManager : MonoBehaviour
         return count;
        // return buildings.Count;
     }
+
+
+    public void UpdateBuildingsByType(BuildingType buildingType)
+    {
+        BuildingData buildingData;
+
+        switch (buildingType)
+        {
+            case BuildingType.Residential1:
+                buildingData = residentialBuildingData;
+                break;
+            case BuildingType.PortOfEntry:
+                buildingData = portOfEntryData;
+                break;
+            default:
+                Debug.LogError("Invalid building type");
+                return;
+        }
+
+        List<GameObject> buildings = buildingTypeMap[buildingType];
+        foreach (GameObject building in buildings)
+        {
+            buildingData.UpdateBuilding(building);
+        }
+    }
+
+
+    public void UpdateBuildingManager()
+    {
+        foreach (BuildingType type in Enum.GetValues(typeof(BuildingType)))
+        { // update all building types for now
+            UpdateBuildingsByType(type);
+        }
+        
+    }
+
 
 }

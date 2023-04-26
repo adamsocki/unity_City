@@ -13,10 +13,10 @@ public class BuildingController : MonoBehaviour
         // Here you can set up any initial state or attributes for the building based on the buildingData.
     }
 
-    void Update()
-    {
-        float elapsedTime = Time.deltaTime;
-        //int resourcesGenerated = buildingData.GenerateResources(elapsedTime);
-        // ... Do something with the generated resources
-    }
+    //void Update()
+    //{
+    //    float elapsedTime = Time.deltaTime;
+    //    //int resourcesGenerated = buildingData.GenerateResources(elapsedTime);
+    //    // ... Do something with the generated resources
+    //}
 }

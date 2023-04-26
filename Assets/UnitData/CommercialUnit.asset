@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f823cd45aca242a48b771dd646657d81, type: 3}
-  m_Name: PortOfEntry
+  m_Script: {fileID: 11500000, guid: 1007593377c2f9f46a437672bb92c026, type: 3}
+  m_Name: CommercialUnit
   m_EditorClassIdentifier: 
-  buildingName: 
-  buildingPrefab: {fileID: 0}
-  units: []
+  unitName: 
+  unitType: 1
