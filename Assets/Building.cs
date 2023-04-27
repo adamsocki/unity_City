@@ -11,6 +11,9 @@ public class Building : Entity
     public int totalResidentialUnits;
 
     public BuildingData data;
+    public static int buildingIDCounter = 10;
+    public int buildingID;
+
 
     public void SetBuildingData(BuildingData buildingData)
     {

@@ -13,6 +13,12 @@ public class BuildingController : MonoBehaviour
         // Here you can set up any initial state or attributes for the building based on the buildingData.
     }
 
+    // Add this property to expose the BuildingData
+    public BuildingData BuildingData
+    {
+        get { return buildingData; }
+    }
+
     //void Update()
     //{
     //    float elapsedTime = Time.deltaTime;

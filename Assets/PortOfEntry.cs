@@ -8,9 +8,9 @@ public class PortOfEntry : BuildingData
 {
     // ... Other properties specific to PortOfEntry
 
-    public override void UpdateBuilding(GameObject building)
+    public override void UpdateBuilding(Building building)
     {
-        Debug.Log("This is port of entry");
+        //Debug.Log("This is port of entry");
         // Implement the specific update logic for PortOfEntry buildings
     }
 }

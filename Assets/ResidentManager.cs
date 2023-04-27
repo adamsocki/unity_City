@@ -5,7 +5,10 @@ using UnityEngine;
 public class ResidentManager : MonoBehaviour
 {
     public GameObject residentPrefab;
+    public ResidentData residentDataTemplate;
+    
     public EntityManager entityManager;
+    public BuildingManager buildingManager;
 
     private List<Resident> residents = new List<Resident>();
    
@@ -13,21 +16,35 @@ public class ResidentManager : MonoBehaviour
     public float spawnInterval = 10f;
 
 
-    //void Update()
-    //{
-    //    spawnTimer += Time.deltaTime;
-    //    if (spawnTimer >= spawnInterval)
-    //    {
-    //        SpawnResident();
-    //        spawnTimer = 0f;
-    //    }
-    //}
+    private void AssignResidentData(Resident resident)
+    {
+        resident.residentData = Instantiate(residentDataTemplate);
+
+        // Assign an available residential building as the resident's home
+        Building availableBuilding = buildingManager.GetAvailableResidentialBuilding();
+        if (availableBuilding != null)
+        {
+            resident.residentData.home = availableBuilding.GetComponent<Building>();
+            resident.residentDataHolder.assignedHomeBuildingID = availableBuilding.buildingID; // Set the assigned home's buildingID
+            Debug.Log(availableBuilding.buildingID);    
+        }
+        else
+        {
+            Debug.LogWarning("No available residential building found.");
+        }
+
+        // Set other residentData properties
+        // ...
+    }
 
     public void SpawnResident()
     {
         Vector3 spawnLocation_test = new Vector3(0.0f, 0.0f, 0.0f);
         GameObject newResident = Instantiate(residentPrefab, spawnLocation_test, Quaternion.identity);
         Resident resident = newResident.GetComponent<Resident>();
+
+        AssignResidentData(resident);
+
         resident.InitResident();
         residents.Add(resident);
     }
@@ -49,8 +66,6 @@ public class ResidentManager : MonoBehaviour
             entityComponent.SetHandle(handle);
         }
     }
-
-
 
     public void UpdateResidents()
     {

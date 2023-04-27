@@ -790,7 +790,8 @@ MonoBehaviour:
   age: 0
   total: 0
   totalResidentialUnits: 0
-  data: {fileID: 0}
+  data: {fileID: 11400000, guid: 99463aa3f7e2afc4e9595a35d4c36f3e, type: 2}
+  buildingID: 0
 --- !u!1 &421386326
 GameObject:
   m_ObjectHideFlags: 0
@@ -1156,7 +1157,7 @@ MonoBehaviour:
   portOfEntryPrefab: {fileID: 2137867717}
   residentialUnitDataTemplate: {fileID: 11400000, guid: e08b2214167cf5b47a14fd4c810d4495, type: 2}
   commercialUnitDataTemplate: {fileID: 11400000, guid: 928e0c770e1dc9946b02cd8239e2d390, type: 2}
-  residentialBuildingData: {fileID: 11400000, guid: aeba9a7533937f7479be72157052d348, type: 2}
+  residentialBuildingData: {fileID: 11400000, guid: bc789ab0947a8b44ab4115edf79fccdf, type: 2}
   portOfEntryData: {fileID: 11400000, guid: cf2ab1f2e1b36dd46bc3deb55444fa79, type: 2}
   entityManager: {fileID: 228374453}
 --- !u!1 &672295447
@@ -1559,7 +1560,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   residentPrefab: {fileID: 2070196852}
+  residentDataTemplate: {fileID: 11400000, guid: 5e37a488efadc1a48b72387a3dac8d51, type: 2}
   entityManager: {fileID: 228374453}
+  buildingManager: {fileID: 641256032}
   spawnInterval: 1
 --- !u!1 &883016548
 GameObject:
@@ -1850,7 +1853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd36bc99c0f1f842b910bc0428f217e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingData: {fileID: 11400000, guid: aeba9a7533937f7479be72157052d348, type: 2}
+  buildingData: {fileID: 11400000, guid: bc789ab0947a8b44ab4115edf79fccdf, type: 2}
 --- !u!114 &976040656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3912,6 +3915,7 @@ GameObject:
   - component: {fileID: 2070196854}
   - component: {fileID: 2070196859}
   - component: {fileID: 2070196860}
+  - component: {fileID: 2070196861}
   m_Layer: 0
   m_Name: Resident
   m_TagString: Untagged
@@ -4054,9 +4058,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90e45d5635b4d7e4a86e59741bbb7385, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: 
-  age: 0
-  home: {fileID: 0}
+  residentData: {fileID: 11400000, guid: 5e37a488efadc1a48b72387a3dac8d51, type: 2}
+  residentDataHolder: {fileID: 2070196861}
+--- !u!114 &2070196861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070196852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092f83445bb37084ba5394aed4a670b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resdientData: {fileID: 11400000, guid: 5e37a488efadc1a48b72387a3dac8d51, type: 2}
+  resident: {fileID: 2070196860}
+  assignedHomeBuildingID: 0
 --- !u!1 &2096446814
 GameObject:
   m_ObjectHideFlags: 0
@@ -4428,4 +4446,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd36bc99c0f1f842b910bc0428f217e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingData: {fileID: 11400000, guid: 99463aa3f7e2afc4e9595a35d4c36f3e, type: 2}
+  buildingData: {fileID: 11400000, guid: cf2ab1f2e1b36dd46bc3deb55444fa79, type: 2}

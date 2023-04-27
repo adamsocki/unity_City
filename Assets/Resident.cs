@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Resident : MonoBehaviour
 {
-    public string name;
-    public int age;
-    public Building home;
+    public ResidentData residentData;
+    public ResidentDataHolder residentDataHolder;
+
 
     private MovementController movementController;
 

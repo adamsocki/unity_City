@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 063bf3b8ce8f22e4c89f5c2a4794320a, type: 3}
-  m_Name: Residential1
+  m_Script: {fileID: 11500000, guid: c17c2bc2c600df647b1803d7acc8e0a7, type: 3}
+  m_Name: ResidentialBuilding
   m_EditorClassIdentifier: 
   buildingName: 
   buildingPrefab: {fileID: 0}

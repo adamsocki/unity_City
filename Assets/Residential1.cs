@@ -7,7 +7,7 @@ public class Residential1 : BuildingData
     // Add any Residential1-specific properties here, if necessary
 
     // Override the UpdateBuilding method to implement specific update logic for Residential1 buildings
-    public override void UpdateBuilding(GameObject building)
+    public override void UpdateBuilding(Building building)
     {
         // Implement the specific update logic for Residential1 buildings
         Debug.Log("This is a Residential1 building");
