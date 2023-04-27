@@ -15,11 +15,8 @@ public class BuildingManager : MonoBehaviour
     public ResidentialUnit residentialUnitDataTemplate;
     public CommercialUnit commercialUnitDataTemplate;
 
-
     public BuildingData residentialBuildingData;
     public BuildingData portOfEntryData;
-
-    
 
     public EntityManager entityManager;
     //private List<BuildingInfo> buildings = new List<BuildingInfo>();
@@ -83,7 +80,6 @@ public class BuildingManager : MonoBehaviour
 
             if (buildingData is Residential1 residential1Data)
             {
-                
                 for (int i = 0; i < 4; i++)
                 {
                     ResidentialUnit newResidentialUnit = Instantiate(residentialUnitDataTemplate);
@@ -133,18 +129,15 @@ public class BuildingManager : MonoBehaviour
         }
     }
 
-
-
-
-    public Building GetAvailableResidentialBuilding()
+    public Building GetAvailableResidenciesByBuildingType(BuildingType buildingType)
     {
-        List<Building> residentialBuildings = buildingTypeMap[BuildingType.Residential1];
-        int buildingCount = residentialBuildings.Count;
+        List<Building> buildings = buildingTypeMap[buildingType];
+        int buildingCount = buildings.Count;
 
         // Generate a random order for the indices
 
         List<int> indices = new List<int>();
-        for (int i = 0; i < residentialBuildings.Count; i++)
+        for (int i = 0; i < buildings.Count; i++)
         {
             indices.Add(i);
         }
@@ -161,31 +154,19 @@ public class BuildingManager : MonoBehaviour
             indices[n] = temp;
         }
 
-
-        //List<int> randomIndices = new List<int>(buildingCount);
-        //for (int i = 0; i < buildingCount; i++)
-        //{
-        //    randomIndices.Add(i);
-        //}
-        //randomIndices = randomIndices.OrderBy(x => UnityEngine.Random.value).ToList();
-
         foreach (int index in indices)
         {
-            Debug.Log("residentialBuildings: " + residentialBuildings);
-            Debug.Log("index: " + index);
-            Debug.Log("residentialBuildings[index]: " + residentialBuildings[index]);
+            BuildingController buildingController = buildings[index].GetComponent<BuildingController>();
 
-            BuildingController buildingController = residentialBuildings[index].GetComponent<BuildingController>();
-           
-            if (buildingController.buildingData is Residential1 residential1Data)
+            if (buildingController.buildingData is BuildingData buildingData)
             {
-                foreach (UnitData unit in residential1Data.units)
+                foreach (UnitData unit in buildingData.units)
                 {
                     if (unit is ResidentialUnit residentialUnit && !residentialUnit.isOccupied)
                     {
-                       // residentialUnit.isOccupied = true;
+                        // residentialUnit.isOccupied = true;
                         /*return buildingController;*/
-                        return residentialBuildings[index];
+                        return buildings[index];
                     }
                 }
             }
@@ -193,6 +174,95 @@ public class BuildingManager : MonoBehaviour
 
         return null;
     }
+
+    /* public Building GetAvailableResidentialBuilding()
+     {
+         List<Building> residentialBuildings = buildingTypeMap[BuildingType.Residential1];
+         int buildingCount = residentialBuildings.Count;
+
+         // Generate a random order for the indices
+
+         List<int> indices = new List<int>();
+         for (int i = 0; i < residentialBuildings.Count; i++)
+         {
+             indices.Add(i);
+         }
+
+         // Shuffle the indices
+         System.Random random = new System.Random();
+         int n = indices.Count;
+         while (n > 1)
+         {
+             n--;
+             int k = random.Next(n + 1);
+             int temp = indices[k];
+             indices[k] = indices[n];
+             indices[n] = temp;
+         }
+
+         foreach (int index in indices)
+         {
+             BuildingController buildingController = residentialBuildings[index].GetComponent<BuildingController>();
+
+             if (buildingController.buildingData is Residential1 residential1Data)
+             {
+                 foreach (UnitData unit in residential1Data.units)
+                 {
+                     if (unit is ResidentialUnit residentialUnit && !residentialUnit.isOccupied)
+                     {
+                        // residentialUnit.isOccupied = true;
+                         *//*return buildingController;*//*
+                         return residentialBuildings[index];
+                     }
+                 }
+             }
+         }
+
+         return null;
+     }*/
+
+
+    public List<Building> GetBuildingsByType(BuildingType buildingType)
+    {
+        if (buildingTypeMap.TryGetValue(buildingType, out List<Building> buildings))
+        {
+            return buildings;
+        }
+        else
+        {
+            Debug.LogWarning($"No buildings found for the given building type: {buildingType}");
+            return new List<Building>();
+        }
+    }
+
+    public Building GetRandomBuildingByType(BuildingType buildingType)
+    {
+        if (buildingTypeMap.TryGetValue(buildingType, out List<Building> buildings) && buildings.Count > 0)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, buildings.Count);
+            return buildings[randomIndex];
+        }
+        else
+        {
+            Debug.LogWarning($"No buildings found for the given building type: {buildingType}");
+            return null;
+        }
+    }
+
+
+    public Vector3 GetLocationOfBuilding(Building building)
+    {
+        if (building != null)
+        {
+            return building.transform.position;
+        }
+        else
+        {
+            Logger.LogWarning("GetLocationOfBuilding had an error. Building is null. Cannot get location.");
+            return DefaultLocations.errorLocation; // You may want to return a different default value or throw an exception instead.
+        }
+    }
+
 
 
     public void UpdateBuildingManager()

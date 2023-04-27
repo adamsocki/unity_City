@@ -19,9 +19,17 @@ public class ResidentManager : MonoBehaviour
     private void AssignResidentData(Resident resident)
     {
         resident.residentData = Instantiate(residentDataTemplate);
+        // Assign an available port of entry building as the resident's port of entr
+
+        Building portOfEntry = buildingManager.GetRandomBuildingByType(BuildingType.PortOfEntry);
+        if (portOfEntry != null )
+        {
+            resident.residentData.portOfEntry = portOfEntry.GetComponent<Building>();
+            resident.residentDataHolder.assignedPortOfEntryID = portOfEntry.buildingID;
+        }
 
         // Assign an available residential building as the resident's home
-        Building availableBuilding = buildingManager.GetAvailableResidentialBuilding();
+        Building availableBuilding = buildingManager.GetAvailableResidenciesByBuildingType(BuildingType.Residential1);
         if (availableBuilding != null)
         {
             resident.residentData.home = availableBuilding.GetComponent<Building>();
@@ -39,12 +47,11 @@ public class ResidentManager : MonoBehaviour
 
     public void SpawnResident()
     {
-        Vector3 spawnLocation_test = new Vector3(0.0f, 0.0f, 0.0f);
-        GameObject newResident = Instantiate(residentPrefab, spawnLocation_test, Quaternion.identity);
+        GameObject newResident = Instantiate(residentPrefab, DefaultLocations.stagingLocation, Quaternion.identity);
         Resident resident = newResident.GetComponent<Resident>();
 
         AssignResidentData(resident);
-
+        resident.transform.position = buildingManager.GetLocationOfBuilding(resident.residentData.portOfEntry);
         resident.InitResident();
         residents.Add(resident);
     }

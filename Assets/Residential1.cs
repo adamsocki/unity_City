@@ -10,7 +10,7 @@ public class Residential1 : BuildingData
     public override void UpdateBuilding(Building building)
     {
         // Implement the specific update logic for Residential1 buildings
-        Debug.Log("This is a Residential1 building");
+      //  Debug.Log("This is a Residential1 building");
     }
 
     // Add any other Residential1-specific methods here

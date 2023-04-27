@@ -1351,6 +1351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityManager: {fileID: 228374453}
   residentManager: {fileID: 805807795}
+  buildingManager: {fileID: 641256032}
   timeBetweenSpawn_test: 1
   timeSinceLastSpawn_test: 0
 --- !u!1 &730205434
@@ -4075,6 +4076,7 @@ MonoBehaviour:
   resdientData: {fileID: 11400000, guid: 5e37a488efadc1a48b72387a3dac8d51, type: 2}
   resident: {fileID: 2070196860}
   assignedHomeBuildingID: 0
+  assignedPortOfEntryID: 0
 --- !u!1 &2096446814
 GameObject:
   m_ObjectHideFlags: 0
