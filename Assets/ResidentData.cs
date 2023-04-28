@@ -5,6 +5,7 @@ public class ResidentData : ScriptableObject
 {
     public string residentName;
     public int age;
+    public bool hasHome;
     public Building home;
     public Building portOfEntry;
 

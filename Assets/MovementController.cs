@@ -4,18 +4,29 @@ using UnityEngine;
 
 public class MovementController : MonoBehaviour
 {
-
+    public Vector3 destination; // Set the destination for the character to move to
     private float movementSpeed = 10.0f;
+    private float stoppingDistance = 0.1f; // A small distance to stop before reaching the destination
 
+    private void Update()
+    {
+        UpdateMovement();
+    }
 
     public void UpdateMovement()
     {
-        Vector3 movement = Vector3.zero;
+        // Calculate the direction vector to the destination
+        Vector3 direction = (destination - transform.position).normalized;
 
-        movement += new Vector3(movementSpeed * Time.deltaTime, 0, 0);
-
-        this.transform.Translate(movement, Space.World);
+        // Move the character towards the destination
+        if (Vector3.Distance(transform.position, destination) > stoppingDistance)
+        {
+            transform.position += direction * movementSpeed * Time.deltaTime;
+        }
     }
 
-
+    public void SetDestination(Vector3 newDestination)
+    {
+        destination = newDestination;
+    }
 }

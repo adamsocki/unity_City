@@ -21,5 +21,9 @@ public class Resident : MonoBehaviour
         // Add more controller updates here
     }
 
-
+    // Call this function to set the destination for the resident
+    public void MoveToDestination(Vector3 destination)
+    {
+        movementController.SetDestination(destination);
+    }
 }

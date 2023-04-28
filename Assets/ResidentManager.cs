@@ -33,8 +33,9 @@ public class ResidentManager : MonoBehaviour
         if (availableBuilding != null)
         {
             resident.residentData.home = availableBuilding.GetComponent<Building>();
+            resident.residentData.hasHome = true;
             resident.residentDataHolder.assignedHomeBuildingID = availableBuilding.buildingID; // Set the assigned home's buildingID
-            Debug.Log(availableBuilding.buildingID);    
+            //Debug.Log(availableBuilding.buildingID);    
         }
         else
         {
@@ -53,6 +54,12 @@ public class ResidentManager : MonoBehaviour
         AssignResidentData(resident);
         resident.transform.position = buildingManager.GetLocationOfBuilding(resident.residentData.portOfEntry);
         resident.InitResident();
+
+        if (resident.residentData.hasHome)
+        { 
+            resident.MoveToDestination(buildingManager.GetLocationOfBuilding(resident.residentData.home));
+        }
+
         residents.Add(resident);
     }
 
