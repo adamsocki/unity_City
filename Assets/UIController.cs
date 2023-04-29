@@ -75,8 +75,14 @@ public class UIController : MonoBehaviour
         // DISPLAY TIME
 
         timeText.SetText("Time: " + timeManager.GetFormattedTime());
-        buildingCountText.SetText("Buildings: " + buildingManager.GetBuildingCount());
 
+        DisplayBuildingCount();
+
+    }
+
+    public void DisplayBuildingCount()
+    {
+        buildingCountText.SetText("Buildings: " + buildingManager.GetBuildingCount());
     }
 
 

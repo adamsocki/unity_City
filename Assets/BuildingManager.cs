@@ -24,6 +24,9 @@ public class BuildingManager : MonoBehaviour
     //private List<GameObject> portOfEntryBuildings = new List<GameObject>();
 
     private Dictionary<BuildingType, List<Building>> buildingTypeMap = new Dictionary<BuildingType, List<Building>>();
+    private int totalBuildingCount = 0;
+
+    public int TotalBuildingCount { get { return totalBuildingCount; } }
 
 
     public void InitBuildingManager()
@@ -71,6 +74,7 @@ public class BuildingManager : MonoBehaviour
 
             newEntity.buildingID = Building.buildingIDCounter++;
             buildingTypeMap[buildingType].Add(newEntity);
+            totalBuildingCount++;
 
             BuildingController buildingController = newEntity.GetComponent<BuildingController>();
             buildingController.Initialize(buildingData);
@@ -99,9 +103,7 @@ public class BuildingManager : MonoBehaviour
 
     public int GetBuildingCount()
     {
-        int count = 0;
-        return count;
-       // return buildings.Count;
+        return totalBuildingCount;
     }
 
 
@@ -129,7 +131,7 @@ public class BuildingManager : MonoBehaviour
         }
     }
 
-    public Building GetAvailableResidenciesByBuildingType(BuildingType buildingType)
+    public (Building, ResidentialUnit) GetAvailableResidenciesByBuildingType(BuildingType buildingType)
     {
         List<Building> buildings = buildingTypeMap[buildingType];
         int buildingCount = buildings.Count;
@@ -164,63 +166,24 @@ public class BuildingManager : MonoBehaviour
                 {
                     if (unit is ResidentialUnit residentialUnit && !residentialUnit.isOccupied)
                     {
-                        // residentialUnit.isOccupied = true;
-                        /*return buildingController;*/
-                        return buildings[index];
+                        return (buildings[index], residentialUnit);
                     }
                 }
             }
         }
-
-        return null;
+        return (null, null);
     }
 
-    /* public Building GetAvailableResidentialBuilding()
-     {
-         List<Building> residentialBuildings = buildingTypeMap[BuildingType.Residential1];
-         int buildingCount = residentialBuildings.Count;
-
-         // Generate a random order for the indices
-
-         List<int> indices = new List<int>();
-         for (int i = 0; i < residentialBuildings.Count; i++)
-         {
-             indices.Add(i);
-         }
-
-         // Shuffle the indices
-         System.Random random = new System.Random();
-         int n = indices.Count;
-         while (n > 1)
-         {
-             n--;
-             int k = random.Next(n + 1);
-             int temp = indices[k];
-             indices[k] = indices[n];
-             indices[n] = temp;
-         }
-
-         foreach (int index in indices)
-         {
-             BuildingController buildingController = residentialBuildings[index].GetComponent<BuildingController>();
-
-             if (buildingController.buildingData is Residential1 residential1Data)
-             {
-                 foreach (UnitData unit in residential1Data.units)
-                 {
-                     if (unit is ResidentialUnit residentialUnit && !residentialUnit.isOccupied)
-                     {
-                        // residentialUnit.isOccupied = true;
-                         *//*return buildingController;*//*
-                         return residentialBuildings[index];
-                     }
-                 }
-             }
-         }
-
-         return null;
-     }*/
-
+    public void AssignResidencyToResident(Resident resident, (Building, ResidentialUnit) residency)
+    {
+        // Assign the building and residential unit to the resident's data
+        resident.residentData.home = residency.Item1.GetComponent<Building>();
+        resident.residentData.hasHome = true;
+        resident.residentDataHolder.assignedHomeBuildingID = residency.Item1.buildingID;
+        resident.residentData.residentialUnit = residency.Item2;
+        residency.Item2.isOccupied = true;
+    }
+    
 
     public List<Building> GetBuildingsByType(BuildingType buildingType)
     {

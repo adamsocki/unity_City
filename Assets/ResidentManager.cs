@@ -19,8 +19,8 @@ public class ResidentManager : MonoBehaviour
     private void AssignResidentData(Resident resident)
     {
         resident.residentData = Instantiate(residentDataTemplate);
-        // Assign an available port of entry building as the resident's port of entr
 
+        // Assign an available port of entry building as the resident's port of entr
         Building portOfEntry = buildingManager.GetRandomBuildingByType(BuildingType.PortOfEntry);
         if (portOfEntry != null )
         {
@@ -29,13 +29,11 @@ public class ResidentManager : MonoBehaviour
         }
 
         // Assign an available residential building as the resident's home
-        Building availableBuilding = buildingManager.GetAvailableResidenciesByBuildingType(BuildingType.Residential1);
-        if (availableBuilding != null)
+        (Building availableBuilding, ResidentialUnit residentialUnit) = buildingManager.GetAvailableResidenciesByBuildingType(BuildingType.Residential1);
+
+        if (availableBuilding != null && residentialUnit != null)
         {
-            resident.residentData.home = availableBuilding.GetComponent<Building>();
-            resident.residentData.hasHome = true;
-            resident.residentDataHolder.assignedHomeBuildingID = availableBuilding.buildingID; // Set the assigned home's buildingID
-            //Debug.Log(availableBuilding.buildingID);    
+            buildingManager.AssignResidencyToResident(resident, (availableBuilding, residentialUnit));
         }
         else
         {

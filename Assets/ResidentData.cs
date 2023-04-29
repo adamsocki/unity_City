@@ -8,6 +8,7 @@ public class ResidentData : ScriptableObject
     public bool hasHome;
     public Building home;
     public Building portOfEntry;
+    public ResidentialUnit residentialUnit;
 
     // Add other resident-specific attributes and methods here
 }

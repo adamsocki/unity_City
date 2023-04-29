@@ -13,11 +13,12 @@ public class Resident : MonoBehaviour
     public void InitResident()
     {
         movementController = GetComponent<MovementController>();
+        movementController.SetMoveCharacter(true);
     }
 
     public void UpdateResident()
     {
-        movementController.UpdateMovement();
+        movementController.UpdateMovementController();
         // Add more controller updates here
     }
 

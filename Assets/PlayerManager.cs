@@ -16,6 +16,12 @@ public class PlayerManager : MonoBehaviour
     {
         cameraController.UpdateCamera();
         playerObjectPlacer.UpdateObjectPosition();
-        
+
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameStateManager.Instance.TogglePauseGame();
+        }
+
     }
 }

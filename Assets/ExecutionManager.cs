@@ -17,8 +17,8 @@ public class ExecutionManager : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
-    {
+    public void InitExecutionManager()
+    { 
         uiController.InitUIController();
         expandableMenuController.InitExpandableMenuController();
         playerManager.InitPlayerManager();
@@ -26,7 +26,7 @@ public class ExecutionManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void updatePlayingExecutionManager()
     {
         //customUIController.UpdateUI();
         uiController.UpdateUI();
