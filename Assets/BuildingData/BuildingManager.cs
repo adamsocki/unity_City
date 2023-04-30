@@ -19,6 +19,7 @@ public class BuildingManager : MonoBehaviour
     public BuildingData portOfEntryData;
 
     public EntityManager entityManager;
+    public ResourceManager resourceManager;
     //private List<BuildingInfo> buildings = new List<BuildingInfo>();
     //private List<GameObject> residentialBuildings = new List<GameObject>();
     //private List<GameObject> portOfEntryBuildings = new List<GameObject>();
@@ -72,6 +73,7 @@ public class BuildingManager : MonoBehaviour
             Building newEntity = newEntityInstance.GetComponent<Building>();
             newEntity.data = buildingData; // Assign the building data
 
+            
             newEntity.buildingID = Building.buildingIDCounter++;
             buildingTypeMap[buildingType].Add(newEntity);
             totalBuildingCount++;
@@ -97,6 +99,12 @@ public class BuildingManager : MonoBehaviour
                     residential1Data.units.Add(newCommercialUnit);
                     Debug.Log("Commercial unit added.");
                 }
+            }
+            else if (buildingData is PortOfEntry portOfEntryData)
+            {
+                // APPLY INITIAL COST MODIFER
+                resourceManager.ApplyModifier(portOfEntryData.InitialCost, ResourceType.Cash, "construction");
+
             }
         }
     }

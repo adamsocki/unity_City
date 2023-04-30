@@ -11,6 +11,15 @@ public class BuildingData : ScriptableObject
 
     // Add methods for building-specific behaviors here
 
+    //// Cost modifier fields
+    //[SerializeField] private CostModifierData initialCost;
+    //[SerializeField] private CostModifierData maintenanceCost;
+
+    //// Properties to access cost modifiers
+    //public CostModifierData InitialCost { get => initialCost; }
+    //public CostModifierData MaintenanceCost { get => maintenanceCost; }
+
+
     public virtual void UpdateBuilding(Building building)
     {
         // Add logic to update the building here or leave it empty for the base classg

@@ -12,13 +12,14 @@ public class ExecutionManager : MonoBehaviour
     public MouseInteractionManager mouseInteractionManager;
     public PopulationManager populationManager;
     public BuildingManager buildingManager;
-
+    public ResourceManager resourceManager;
     public ExpandableMenuController expandableMenuController;
 
 
     // Start is called before the first frame update
     public void InitExecutionManager()
-    { 
+    {
+        resourceManager.InitResourceManager();
         uiController.InitUIController();
         expandableMenuController.InitExpandableMenuController();
         playerManager.InitPlayerManager();

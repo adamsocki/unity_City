@@ -14,6 +14,7 @@ public class UIController : MonoBehaviour
     public EntityManager entityManager;
     public EntityFactory entityFactory;
     public BuildingManager buildingManager;
+    public ResourceManager resourceManager;
     public MouseInteractionManager mouseInteractionManager;
 
     public TextMeshProUGUI timeText;
@@ -28,6 +29,7 @@ public class UIController : MonoBehaviour
     public Button placeRoadButton;
 
     public TextMeshProUGUI buildingCountText;
+    public TextMeshProUGUI cashText;
 
     [HideInInspector]
     public bool isInPlacementMode = false;
@@ -77,12 +79,19 @@ public class UIController : MonoBehaviour
         timeText.SetText("Time: " + timeManager.GetFormattedTime());
 
         DisplayBuildingCount();
+        DisplayCash();
 
     }
 
     public void DisplayBuildingCount()
     {
         buildingCountText.SetText("Buildings: " + buildingManager.GetBuildingCount());
+    }
+
+    public void DisplayCash()
+    {
+        ResourceData cashResourceData = resourceManager.GetResourceByName(ResourceType.Cash);
+        cashText.SetText("Cash: " + cashResourceData.currentAmount);
     }
 
 
