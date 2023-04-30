@@ -25,6 +25,11 @@ public class BuildingManager : MonoBehaviour
     //private List<GameObject> portOfEntryBuildings = new List<GameObject>();
 
     private Dictionary<BuildingType, List<Building>> buildingTypeMap = new Dictionary<BuildingType, List<Building>>();
+
+    
+
+
+
     private int totalBuildingCount = 0;
 
     public int TotalBuildingCount { get { return totalBuildingCount; } }
@@ -74,12 +79,25 @@ public class BuildingManager : MonoBehaviour
             newEntity.data = buildingData; // Assign the building data
 
             
+
+
             newEntity.buildingID = Building.buildingIDCounter++;
             buildingTypeMap[buildingType].Add(newEntity);
             totalBuildingCount++;
 
             BuildingController buildingController = newEntity.GetComponent<BuildingController>();
             buildingController.Initialize(buildingData);
+
+            Debug.Log($"New entity type: {newEntity.GetType()}");
+            if (buildingData is IMaintenanceEntity maintenanceEntity)
+            {
+                Debug.Log($"Maintenance entity added to the list. List count: {resourceManager.maintenanceEntities.Count}");
+
+                // Assuming you have a reference to your ResourceManager instance called resourceManager
+                resourceManager.maintenanceEntities.Add(maintenanceEntity);
+            }
+
+
 
             // Instantiate and add units to the buildingData object
             Debug.Log("buildingData type: " + buildingData.GetType()); // Add this line
@@ -104,8 +122,9 @@ public class BuildingManager : MonoBehaviour
             {
                 // APPLY INITIAL COST MODIFER
                 resourceManager.ApplyModifier(portOfEntryData.InitialCost, ResourceType.Cash, "construction");
-
             }
+
+            
         }
     }
 
@@ -244,6 +263,21 @@ public class BuildingManager : MonoBehaviour
         }
         
     }
+
+
+
+    //TODO IMPLEMENT THIS
+    public void RemoveBuilding(Building building)
+    {
+        // ... Existing code to remove the building from the list and destroy it
+
+        // Stop the coroutine for the removed building
+    //    StopCoroutine(building.maintenanceCoroutine);
+    }
+
+
+
+
 
 
 }

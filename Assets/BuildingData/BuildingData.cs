@@ -19,13 +19,21 @@ public class BuildingData : ScriptableObject
     //public CostModifierData InitialCost { get => initialCost; }
     //public CostModifierData MaintenanceCost { get => maintenanceCost; }
 
+    public void InitBuilding()
+    {
+
+    }
+
 
     public virtual void UpdateBuilding(Building building)
     {
         // Add logic to update the building here or leave it empty for the base classg
         //Debug.Log("THis is a buidling");
     }
-} 
+
+   
+
+}
 
 
 

@@ -3,7 +3,11 @@ guid: f823cd45aca242a48b771dd646657d81
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - buildingPrefab: {instanceID: 0}
+  - resourceManager: {instanceID: 0}
+  - initialCost: {instanceID: 0}
+  - maintenanceCost: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

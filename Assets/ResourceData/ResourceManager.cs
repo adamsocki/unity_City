@@ -6,14 +6,16 @@ public class ResourceManager : MonoBehaviour
 {
 
     [SerializeField] private List<ResourceData> resources;
-   // [SerializeField] private List<ResourceModifierData> modifiers;
+    // [SerializeField] private List<ResourceModifierData> modifiers;
+    public List<IMaintenanceEntity> maintenanceEntities = new List<IMaintenanceEntity>();
+
 
 
     // Initialize the ResourceManager
     public void InitResourceManager()
     {
         // Add any initialization code here, if needed
-        ResourceData cashResourceData = GetResourceByName(ResourceType.Cash);
+        ResourceData cashResourceData = GetResourceByType(ResourceType.Cash);
         cashResourceData.currentAmount = cashResourceData.startingAmount;
     }
 
@@ -23,7 +25,7 @@ public class ResourceManager : MonoBehaviour
         // Add any update code here, if needed
     }
 
-    public ResourceData GetResourceByName(ResourceType resourceType)
+    public ResourceData GetResourceByType(ResourceType resourceType)
     {
         foreach (ResourceData resource in resources)
         {
@@ -39,8 +41,53 @@ public class ResourceManager : MonoBehaviour
 
     public void ApplyModifier(ResourceModifierData modifier, ResourceType resourceType, string modifierType)
     {
-        ResourceData targetResource = GetResourceByName(resourceType);
+        ResourceData targetResource = GetResourceByType(resourceType);
         modifier.ApplyModifier(targetResource, modifierType);
     }
+
+    
+
+    private void OnEnable()
+    {
+        TimeEventManager.OnDayPassed += ApplyMaintenanceCosts;
+
+    }
+
+    private void OnDisable()
+    {
+        TimeEventManager.OnDayPassed -= ApplyMaintenanceCosts;
+    }
+
+    private void UpdateMaintenanceCosts(CostModifierData costModifier)
+    {
+        // get all buildings
+
+        // get all residents
+       
+
+        //foreach (ICostModifierApplicable entity in entitiesWithMaintenanceCost)
+        //{
+        //    entity.ApplyCostModifier("maintenance");
+        //}
+    }
+
+    public void ApplyMaintenanceCosts()
+    {
+        // Iterate through all maintenance entitiesU    
+
+        
+
+        foreach (IMaintenanceEntity maintenanceEntity in maintenanceEntities)
+        {
+            Debug.Log("Inovke");
+            // Call the ApplyMaintenanceCost method on each entity and pass the ResourceManager instance
+            maintenanceEntity.ApplyMaintenanceCost(this);
+        }
+    }
+
+
+
+
+
 
 }

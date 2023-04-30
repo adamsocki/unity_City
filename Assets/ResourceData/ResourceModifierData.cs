@@ -8,4 +8,6 @@ public abstract class ResourceModifierData : ScriptableObject
 
     // Add an abstract method that will be implemented by subclasses to modify the resource
     public abstract void ApplyModifier(ResourceData resource, string modifierType);
+
+    
 }

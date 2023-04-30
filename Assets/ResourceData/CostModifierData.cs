@@ -5,7 +5,10 @@ public class CostModifierData : ResourceModifierData
 {
     public int constructionCost;
     public int maintenanceCost;
+    public float maintenanceInterval;
     public ResourceType resourceType;
+
+
 
     // Add more properties related to costs, such as upgrade costs, etc.
 
@@ -25,4 +28,6 @@ public class CostModifierData : ResourceModifierData
                 break;
         }
     }
+
+   
 }

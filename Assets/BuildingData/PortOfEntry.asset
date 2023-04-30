@@ -15,3 +15,5 @@ MonoBehaviour:
   buildingName: 
   buildingPrefab: {fileID: 0}
   units: []
+  initialCost: {fileID: 11400000, guid: 58836c4cdc544e54d9a745dd9465a400, type: 2}
+  maintenanceCost: {fileID: 11400000, guid: 58836c4cdc544e54d9a745dd9465a400, type: 2}

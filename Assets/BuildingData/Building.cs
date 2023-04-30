@@ -20,4 +20,5 @@ public class Building : Entity
         data = buildingData;
     }
 
+    
 }

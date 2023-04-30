@@ -53,4 +53,7 @@ public class EntityManager : MonoBehaviour
         entityFactory.CreateEntity(entityType, position, rotation, buildingType);
     }
 
+
+    
+
 }

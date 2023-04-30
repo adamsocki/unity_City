@@ -90,7 +90,7 @@ public class UIController : MonoBehaviour
 
     public void DisplayCash()
     {
-        ResourceData cashResourceData = resourceManager.GetResourceByName(ResourceType.Cash);
+        ResourceData cashResourceData = resourceManager.GetResourceByType(ResourceType.Cash);
         cashText.SetText("Cash: " + cashResourceData.currentAmount);
     }
 

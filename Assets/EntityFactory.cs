@@ -28,7 +28,7 @@ public class EntityFactory : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogError("No building type provided for EntityType.Building");
+                    //Debug.LogError("No building type provided for EntityType.Building");
                 }
                 break;
             case EntityType.Road:
