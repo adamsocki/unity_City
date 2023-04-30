@@ -3,8 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CostModifierData", menuName = "Resource Modifier/Cost Modifier", order = 2)]
 public class CostModifierData : ResourceModifierData
 {
-    public int constructionCost;
-    public int maintenanceCost;
+    public float constructionCost;
+    public float maintenanceCost;
     public float maintenanceInterval;
     public ResourceType resourceType;
 

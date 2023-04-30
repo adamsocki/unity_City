@@ -90,7 +90,7 @@ public class MouseInteractionManager : MonoBehaviour
 
     public bool IsObjectOverlap(Vector3 position)
     {
-        Debug.Log("IsObjectOverlap called");
+        //Debug.Log("IsObjectOverlap called");
         // Get the bounds of the object
         Bounds bounds = playerObjectPlacer.GetBounds();
         bounds.center = position;
@@ -102,12 +102,12 @@ public class MouseInteractionManager : MonoBehaviour
         // If there are overlapping colliders, return true
         if (colliders.Length > 0)
         {
-            Debug.Log("Overlap detected");
+           // Debug.Log("Overlap detected");
             return true;
         }
 
         // No overlaps found, return false
-        Debug.Log("Overlap not detected");
+        //Debug.Log("Overlap not detected");
         return false;
     }
 

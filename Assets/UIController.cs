@@ -91,7 +91,10 @@ public class UIController : MonoBehaviour
     public void DisplayCash()
     {
         ResourceData cashResourceData = resourceManager.GetResourceByType(ResourceType.Cash);
-        cashText.SetText("Cash: " + cashResourceData.currentAmount);
+
+        float cashMaintenanceCost = resourceManager.GetMaintenanceCostForResourceType(ResourceType.Cash);
+
+        cashText.SetText("Cash: " + cashResourceData.currentAmount + "; Reduction Per Interval: " + cashMaintenanceCost);
     }
 
 

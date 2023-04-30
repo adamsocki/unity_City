@@ -95,6 +95,7 @@ public class BuildingManager : MonoBehaviour
 
                 // Assuming you have a reference to your ResourceManager instance called resourceManager
                 resourceManager.maintenanceEntities.Add(maintenanceEntity);
+               
             }
 
 
@@ -122,6 +123,7 @@ public class BuildingManager : MonoBehaviour
             {
                 // APPLY INITIAL COST MODIFER
                 resourceManager.ApplyModifier(portOfEntryData.InitialCost, ResourceType.Cash, "construction");
+                resourceManager.AddToMaintenanceCosts(ResourceType.Cash, portOfEntryData.MaintenanceCost.maintenanceCost);
             }
 
             

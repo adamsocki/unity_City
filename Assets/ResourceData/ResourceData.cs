@@ -4,8 +4,8 @@ using UnityEngine;
 public class ResourceData : ScriptableObject
 {
     public ResourceType resourceType;
-    public int startingAmount;
-    public int currentAmount;
+    public float startingAmount;
+    public float currentAmount;
 
     // Add more properties related to the resource, such as income rate, etc.
 }
