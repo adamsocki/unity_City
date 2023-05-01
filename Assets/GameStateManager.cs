@@ -6,7 +6,7 @@ public class GameStateManager : MonoBehaviour
 {
     public GameState CurrentState { get; private set; }
     public static GameStateManager Instance { get; private set; }
-
+    public TimeManager timeManager;
 
 
     public ExecutionManager executionManager;

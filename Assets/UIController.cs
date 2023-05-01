@@ -42,9 +42,9 @@ public class UIController : MonoBehaviour
         placePortOfEntryBuildingButton.onClick.AddListener(() => SetPlaceableObject(portOfEntryBuildingPrefab, EntityFactory.EntityType.Building, BuildingType.PortOfEntry));
         placeRoadButton.onClick.AddListener(() => SetPlaceableObject(roadPrefab, EntityFactory.EntityType.Road));
 
-       // increaseTimeButton.onClick.AddListener(IncreaseTimeScale);
-        //decreaseTimeButton.onClick.AddListener(DecreaseTimeScale);
-       // pauseTimeButton.onClick.AddListener(PauseTimeScale);
+        increaseTimeButton.onClick.AddListener(IncreaseTimeScale);
+        decreaseTimeButton.onClick.AddListener(DecreaseTimeScale);
+        pauseTimeButton.onClick.AddListener(PauseTimeScale);
     }
 
 
@@ -142,7 +142,8 @@ public class UIController : MonoBehaviour
     // Pause the time scale when the "Pause Time Scale" button is clicked
     public void PauseTimeScale()
     {
-        timeManager.timeScale = 0f;
+        //timeManager.timeScale = 0f;
+        GameStateManager.Instance.TogglePauseGame();
     }
 }
 

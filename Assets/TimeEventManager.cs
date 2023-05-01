@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class TimeEventManager : MonoBehaviour
 {
-    public float timeScale;
+    //public float timeScale;
+    public TimeManager timeManager;
     public float hoursPerDay;
 
     public delegate void TimeEvent();
@@ -12,7 +13,7 @@ public class TimeEventManager : MonoBehaviour
 
     private void Update()
     {
-        currentTime += Time.deltaTime * timeScale;
+        currentTime += Time.deltaTime * timeManager.timeScale;
         
 
         if (currentTime >= hoursPerDay * 3600)
