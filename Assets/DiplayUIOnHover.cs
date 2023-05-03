@@ -8,6 +8,7 @@ public class DiplayUIOnHover : MonoBehaviour, IPointerEnterHandler, IPointerExit
 {
 
     public GameObject panel; // Assign the panel in the Inspector
+ //   public GameObject menuPanel;
 
     // This method is called when the mouse pointer enters the button
     public void OnPointerEnter(PointerEventData eventData)
@@ -21,6 +22,5 @@ public class DiplayUIOnHover : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         panel.SetActive(false);
         Debug.Log("Off");
-
     }
 }

@@ -13,8 +13,8 @@ public class ExecutionManager : MonoBehaviour
     public PopulationManager populationManager;
     public BuildingManager buildingManager;
     public ResourceManager resourceManager;
-    public ExpandableMenuController expandableMenuController;
-    public ExpandableMenuController expandableMenuController2;
+    public MenuManager menuManager;
+
 
 
     // Start is called before the first frame update
@@ -22,8 +22,7 @@ public class ExecutionManager : MonoBehaviour
     {
         resourceManager.InitResourceManager();
         uiController.InitUIController();
-        expandableMenuController.InitExpandableMenuController();
-        expandableMenuController2.InitExpandableMenuController();
+        menuManager.InitMenuManager();
         playerManager.InitPlayerManager();
         buildingManager.InitBuildingManager();
     }

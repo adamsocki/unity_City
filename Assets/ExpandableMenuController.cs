@@ -23,4 +23,10 @@ public class ExpandableMenuController : MonoBehaviour
         subMenuAnimator.SetBool("Expand", isExpanded);
         print("isExpanded is: " + isExpanded);
     }
+
+    public bool GetIsExpanded()
+    {
+        return isExpanded;
+    }
+    
 }

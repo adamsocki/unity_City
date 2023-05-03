@@ -28,8 +28,6 @@ public class BuildingManager : MonoBehaviour
 
     
 
-
-
     private int totalBuildingCount = 0;
 
     public int TotalBuildingCount { get { return totalBuildingCount; } }
