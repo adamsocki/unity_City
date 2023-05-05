@@ -1,0 +1,4 @@
+Plaza
+Tower
+Emporium
+Residence

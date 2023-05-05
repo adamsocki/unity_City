@@ -18,6 +18,10 @@ public class BuildingCreationController : MonoBehaviour
     public Text residentialUnitTotal;
     public Text commercialUnitTotal;
 
+    public Text buildingName;
+    public Button generateBuildingName;
+    public BuildingNameGenerator buildingNameGenerator;
+
     private int residentialUnits;
     private int commercialUnits;
 
@@ -29,11 +33,19 @@ public class BuildingCreationController : MonoBehaviour
         removeResidentialUnitButton.onClick.AddListener(RemoveResidentialUnit);
         addCommercialUnitButton.onClick.AddListener(AddCommercialUnit);
         removeCommercialUnitButton.onClick.AddListener(RemoveCommercialUnit);
+        generateBuildingName.onClick.AddListener(GenerateBuildingName);
 
         initNewBuildingButton.onClick.AddListener(InitNewBuilding);
         fabricateNewBuildingButton.onClick.AddListener(FabricateNewBuilding);
-        residentialUnits = 0;
-        commercialUnits = 0;
+        //residentialUnits = 0;
+        // commercialUnits = 0;
+        UpdateUnitTexts();
+    }
+
+    private void GenerateBuildingName()
+    {
+        Debug.Log(buildingNameGenerator.GenerateRandomName());
+        buildingName.text = buildingNameGenerator.GenerateRandomName();
     }
 
     private void AddResidentialUnit()
@@ -74,7 +86,10 @@ public class BuildingCreationController : MonoBehaviour
 
     private void InitNewBuilding()
     {
-        // Your logic for initializing a new building goes here
+        residentialUnits = 0;
+        commercialUnits = 0;
+        UpdateUnitTexts();
+
     }
 
     private void FabricateNewBuilding()
