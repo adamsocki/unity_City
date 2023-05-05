@@ -38,8 +38,8 @@ public class UIController : MonoBehaviour
 
     public void InitUIController()
     {
-        placeResidentialBuildingButton.onClick.AddListener(() => SetPlaceableObject(residentialBuildingPrefab, EntityFactory.EntityType.Building, BuildingType.Residential1));
-        placePortOfEntryBuildingButton.onClick.AddListener(() => SetPlaceableObject(portOfEntryBuildingPrefab, EntityFactory.EntityType.Building, BuildingType.PortOfEntry));
+       // placeResidentialBuildingButton.onClick.AddListener(() => SetPlaceableObject(residentialBuildingPrefab, EntityFactory.EntityType.Building, BuildingType.Residential1));
+       // placePortOfEntryBuildingButton.onClick.AddListener(() => SetPlaceableObject(portOfEntryBuildingPrefab, EntityFactory.EntityType.Building, BuildingType.PortOfEntry));
         placeRoadButton.onClick.AddListener(() => SetPlaceableObject(roadPrefab, EntityFactory.EntityType.Road));
 
         increaseTimeButton.onClick.AddListener(IncreaseTimeScale);

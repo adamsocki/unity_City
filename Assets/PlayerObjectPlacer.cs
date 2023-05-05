@@ -28,6 +28,10 @@ public class PlayerObjectPlacer : MonoBehaviour
             objectToPlace.transform.position = hiddenPosition; 
             objectToPlace.layer = LayerMask.NameToLayer("PreviewObject");
         }
+        if (uiController == null)
+        {
+            Debug.LogError("UIController not assigned in the PlayerObjectPlacer script.");
+        }
     }
 
     public Bounds GetBounds()
