@@ -43,11 +43,11 @@ public class BuildingManager : MonoBehaviour
     }
 
     // You can call this method whenever you want to instantiate a building
-    public void PlaceEntity(BuildingType buildingType, Vector3 position, Quaternion rotation)
+    public void PlaceEntity(BuildingType buildingType, Vector3 position, Quaternion rotation, BuildingData buildingData = null)
     {
         GameObject newEntityPrefab = null;
-        BuildingData buildingData = null;
-        Debug.Log("Place Entity is callee.");
+      //  BuildingData buildingData = null;
+       // Debug.Log("Place Entity is callee.");
         switch (buildingType)
         {
             case BuildingType.Residential1:
@@ -127,6 +127,8 @@ public class BuildingManager : MonoBehaviour
             
         }
     }
+
+
 
     public int GetBuildingCount()
     {
@@ -220,7 +222,7 @@ public class BuildingManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"No buildings found for the given building type: {buildingType}");
+          //  Debug.LogWarning($"No buildings found for the given building type: {buildingType}");
             return new List<Building>();
         }
     }
@@ -234,7 +236,7 @@ public class BuildingManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"No buildings found for the given building type: {buildingType}");
+           // Debug.LogWarning($"No buildings found for the given building type: {buildingType}");
             return null;
         }
     }

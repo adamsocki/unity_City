@@ -671,6 +671,8 @@ MonoBehaviour:
   buildingNameGenerator: {fileID: 2048138652}
   uiController: {fileID: 252649990}
   residentialBuildingPrefab: {fileID: 976040653}
+  residentialUnitDataTemplate: {fileID: 11400000, guid: e08b2214167cf5b47a14fd4c810d4495, type: 2}
+  commercialUnitDataTemplate: {fileID: 11400000, guid: 928e0c770e1dc9946b02cd8239e2d390, type: 2}
 --- !u!1 &226347873
 GameObject:
   m_ObjectHideFlags: 0
@@ -5458,7 +5460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToPlace: {fileID: 420647900}
   entityType: 0
-  buildingType: 0
+  buildingData: {fileID: 0}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8

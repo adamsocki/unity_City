@@ -50,7 +50,7 @@ public class ResourceManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"No maintenance cost found for resource type: {resourceType}");
+           // Debug.LogWarning($"No maintenance cost found for resource type: {resourceType}");
             return 0f;
         }
     }

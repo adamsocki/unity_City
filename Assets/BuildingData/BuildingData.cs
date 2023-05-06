@@ -7,17 +7,12 @@ public class BuildingData : ScriptableObject
     public string buildingName;
     public Building buildingPrefab;
     public List<UnitData> units;
-    // Add other building-specific attributes here
 
-    // Add methods for building-specific behaviors here
+    public BuildingData()
+    {
+        units = new List<UnitData>();
 
-    //// Cost modifier fields
-    //[SerializeField] private CostModifierData initialCost;
-    //[SerializeField] private CostModifierData maintenanceCost;
-
-    //// Properties to access cost modifiers
-    //public CostModifierData InitialCost { get => initialCost; }
-    //public CostModifierData MaintenanceCost { get => maintenanceCost; }
+    }
 
     public void InitBuilding()
     {

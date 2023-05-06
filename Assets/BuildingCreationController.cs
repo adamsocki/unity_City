@@ -28,6 +28,9 @@ public class BuildingCreationController : MonoBehaviour
     public UIController uiController;
     public GameObject residentialBuildingPrefab;
 
+    public ResidentialUnit residentialUnitDataTemplate;
+    public CommercialUnit commercialUnitDataTemplate;
+
 
     // add listeners to all the buttons
     void Start()
@@ -40,6 +43,7 @@ public class BuildingCreationController : MonoBehaviour
 
         initNewBuildingButton.onClick.AddListener(InitNewBuilding);
         fabricateNewBuildingButton.onClick.AddListener(FabricateNewBuilding);
+
         //residentialUnits = 0;
         // commercialUnits = 0;
         UpdateUnitTexts();
@@ -47,7 +51,7 @@ public class BuildingCreationController : MonoBehaviour
 
     private void GenerateBuildingName()
     {
-        Debug.Log(buildingNameGenerator.GenerateRandomName());
+        //Debug.Log(buildingNameGenerator.GenerateRandomName());
         buildingName.text = buildingNameGenerator.GenerateRandomName();
     }
 
@@ -98,7 +102,22 @@ public class BuildingCreationController : MonoBehaviour
     private void FabricateNewBuilding()
     {
         // Your logic for fabricating a new building goes here
-        uiController.SetPlaceableObject(residentialBuildingPrefab, EntityFactory.EntityType.Building, BuildingType.Residential1);
+        BuildingData buildingData = ScriptableObject.CreateInstance<BuildingData>();
+        buildingData.buildingName = buildingName.text;
+        for (int i  = 0; i < residentialUnits; i++)
+        {
+            ResidentialUnit newResidentialUnit = Instantiate(residentialUnitDataTemplate);
+            buildingData.units.Add(newResidentialUnit);
+          Debug.Log("fabricateBuilding");
+        }
+        for (int i = 0; i < commercialUnits; i++)
+        {
+            CommercialUnit newCommercialUnit = Instantiate(commercialUnitDataTemplate);
+            buildingData.units.Add(newCommercialUnit);
+        }
+        //  Debug.Log("fabricateBuilding");
+
+        uiController.SetPlaceableObject(residentialBuildingPrefab, EntityFactory.EntityType.Building, BuildingType.Residential1, buildingData);
     }
 
 }

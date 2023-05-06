@@ -31,7 +31,7 @@ public class UIController : MonoBehaviour
     public TextMeshProUGUI buildingCountText;
     public TextMeshProUGUI cashText;
 
-    [HideInInspector]
+   // [HideInInspector]
     public bool isInPlacementMode = false;
 
 
@@ -59,7 +59,8 @@ public class UIController : MonoBehaviour
                     return;
                 }
                 // Use the EntityManager to instantiate the object.
-                entityManager.PlaceEntity(playerObjectPlacer.entityType, playerObjectPlacer.objectToPlace.transform.position, playerObjectPlacer.objectToPlace.transform.rotation, playerObjectPlacer.buildingType);
+                //entityManager.PlaceEntity(playerObjectPlacer.entityType, playerObjectPlacer.objectToPlace.transform.position, playerObjectPlacer.objectToPlace.transform.rotation, playerObjectPlacer.buildingType);
+                entityManager.PlaceEntity(playerObjectPlacer);
             }
             else
             { 
@@ -110,7 +111,7 @@ public class UIController : MonoBehaviour
     }
 
 
-    public void SetPlaceableObject(GameObject objectPrefab, EntityFactory.EntityType entityType, BuildingType? buildingType = null)
+    public void SetPlaceableObject(GameObject objectPrefab, EntityFactory.EntityType entityType, BuildingType? buildingType = null, BuildingData buildingData = null)
     {
         if (buildingType.HasValue)
         {
@@ -118,6 +119,8 @@ public class UIController : MonoBehaviour
         }
         playerObjectPlacer.objectToPlace = objectPrefab;
         playerObjectPlacer.entityType = entityType;
+        playerObjectPlacer.buildingData = buildingData;
+        Debug.Log("SetPlaceableObject");
         TogglePlacementMode();
     }
 

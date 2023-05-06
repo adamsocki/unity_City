@@ -48,12 +48,17 @@ public class EntityManager : MonoBehaviour
     {
         entities.Remove(handle.id);
     }
-    public void PlaceEntity(EntityFactory.EntityType entityType, Vector3 position, Quaternion rotation, BuildingType? buildingType = null)
+
+    //public void PlaceEntity(EntityFactory.EntityType entityType, Vector3 position, Quaternion rotation, BuildingType? buildingType = null, BuildingData buildingData = null)
+    //{
+    //    entityFactory.CreateEntity(entityType, position, rotation, buildingType);
+    //}
+
+    public void PlaceEntity(PlayerObjectPlacer playerObjectPlacer)
     {
-        entityFactory.CreateEntity(entityType, position, rotation, buildingType);
+        entityFactory.CreateEntity(playerObjectPlacer);
     }
 
 
-    
 
 }
