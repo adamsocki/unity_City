@@ -27,9 +27,9 @@ public class BuildingNameGenerator : MonoBehaviour
         adjectives = LoadTextFile("adjectives");
         nouns = LoadTextFile("nouns");
         suffixes = LoadTextFile("suffixes");
-      //  firstNames = LoadTextFile("firstNames");
-       // lastNames = LoadTextFile("lastNames");
-       // locations = LoadTextFile("locations");
+        firstNames = LoadTextFile("firstNames");
+        lastNames = LoadTextFile("lastNames");
+        locations = LoadTextFile("locations");
     }
 
 

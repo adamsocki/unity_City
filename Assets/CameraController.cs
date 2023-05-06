@@ -26,6 +26,8 @@ public class CameraController : MonoBehaviour
     private float theta;
     private float phi;
 
+    public bool allowEdgeMovement;
+
 
     // Start is called before the first frame update
     void Start()
@@ -115,24 +117,29 @@ public class CameraController : MonoBehaviour
             transform.Translate(moveDirection, Space.World); // Apply movement to the pivot
 
             // Edge Movement
-            Vector3 edgeMovement = Vector3.zero;
+            if (allowEdgeMovement)
+            {
+                Vector3 edgeMovement = Vector3.zero;
 
-            if (Input.mousePosition.x <= edgeBorderSize)
-                edgeMovement += new Vector3(-edgeMovementSpeed * Time.deltaTime, 0, 0);
+                if (Input.mousePosition.x <= edgeBorderSize)
+                    edgeMovement += new Vector3(-edgeMovementSpeed * Time.deltaTime, 0, 0);
 
-            if (Input.mousePosition.x >= Screen.width - edgeBorderSize)
-                edgeMovement += new Vector3(edgeMovementSpeed * Time.deltaTime, 0, 0);
+                if (Input.mousePosition.x >= Screen.width - edgeBorderSize)
+                    edgeMovement += new Vector3(edgeMovementSpeed * Time.deltaTime, 0, 0);
 
-            if (Input.mousePosition.y <= edgeBorderSize)
-                edgeMovement += new Vector3(0, 0, -edgeMovementSpeed * Time.deltaTime);
+                if (Input.mousePosition.y <= edgeBorderSize)
+                    edgeMovement += new Vector3(0, 0, -edgeMovementSpeed * Time.deltaTime);
 
-            if (Input.mousePosition.y >= Screen.height - edgeBorderSize)
-                edgeMovement += new Vector3(0, 0, edgeMovementSpeed * Time.deltaTime);
+                if (Input.mousePosition.y >= Screen.height - edgeBorderSize)
+                    edgeMovement += new Vector3(0, 0, edgeMovementSpeed * Time.deltaTime);
 
-            edgeMovement = camera.transform.TransformDirection(edgeMovement);
-            edgeMovement.y = 0; // Remove the vertical component
+                edgeMovement = camera.transform.TransformDirection(edgeMovement);
+                edgeMovement.y = 0; // Remove the vertical component
 
-            transform.Translate(edgeMovement, Space.World); // Apply movement to the pivot
+                transform.Translate(edgeMovement, Space.World); // Apply movement to the pivot
+            }
+
+            
 
             // Vertical Movement
             float verticalMovement = 0.0f;

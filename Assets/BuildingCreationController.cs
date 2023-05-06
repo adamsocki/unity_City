@@ -25,6 +25,9 @@ public class BuildingCreationController : MonoBehaviour
     private int residentialUnits;
     private int commercialUnits;
 
+    public UIController uiController;
+    public GameObject residentialBuildingPrefab;
+
 
     // add listeners to all the buttons
     void Start()
@@ -95,6 +98,7 @@ public class BuildingCreationController : MonoBehaviour
     private void FabricateNewBuilding()
     {
         // Your logic for fabricating a new building goes here
+        uiController.SetPlaceableObject(residentialBuildingPrefab, EntityFactory.EntityType.Building, BuildingType.Residential1);
     }
 
 }
