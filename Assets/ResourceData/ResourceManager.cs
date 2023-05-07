@@ -106,7 +106,7 @@ public class ResourceManager : MonoBehaviour
     {
         // Iterate through all maintenance entitiesU    
 
-        Debug.Log("Inovke");
+        Debug.Log("ApplyMaintenanceCosts()");
 
         //foreach (IMaintenanceEntity maintenanceEntity in maintenanceEntities)
         //{
