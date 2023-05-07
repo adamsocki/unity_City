@@ -46,13 +46,12 @@ public class BuildingManager : MonoBehaviour
     public void PlaceEntity(BuildingType buildingType, Vector3 position, Quaternion rotation, BuildingData buildingData = null)
     {
         GameObject newEntityPrefab = null;
-      //  BuildingData buildingData = null;
-       // Debug.Log("Place Entity is callee.");
+
         switch (buildingType)
         {
             case BuildingType.Residential1:
                 newEntityPrefab = Instantiate(residential1Prefab, position, rotation);
-                buildingData = residentialBuildingData;
+              //  buildingData = residentialBuildingData;
                 Debug.Log("Residential1 buildingData assigned.");
                 break;
             case BuildingType.PortOfEntry:
@@ -65,15 +64,15 @@ public class BuildingManager : MonoBehaviour
          
         if (newEntityPrefab != null)
         {
-            GameObject newEntityInstance = Instantiate(newEntityPrefab, position, rotation);
-            newEntityInstance.layer = LayerMask.NameToLayer("Default");
-            EntityManager.Handle handle = entityManager.AddEntity(newEntityInstance);
-            Entity entityComponent = newEntityInstance.GetComponent<Entity>();
+            // GameObject newEntityInstance = Instantiate(newEntityPrefab, position, rotation);
+            newEntityPrefab.layer = LayerMask.NameToLayer("Building");
+            EntityManager.Handle handle = entityManager.AddEntity(newEntityPrefab);
+            Entity entityComponent = newEntityPrefab.GetComponent<Entity>();
             entityComponent.SetHandle(handle);
 
-            newEntityInstance.AddComponent<Building>(); // Add this line
+            newEntityPrefab.AddComponent<Building>(); // Add this line
 
-            Building newEntity = newEntityInstance.GetComponent<Building>();
+            Building newEntity = newEntityPrefab.GetComponent<Building>();
             newEntity.data = buildingData; // Assign the building data
 
             
@@ -83,10 +82,12 @@ public class BuildingManager : MonoBehaviour
             buildingTypeMap[buildingType].Add(newEntity);
             totalBuildingCount++;
 
-            BuildingController buildingController = newEntity.GetComponent<BuildingController>();
-            buildingController.Initialize(buildingData);
+           // BuildingController buildingController = newEntity.GetComponent<BuildingController>();
+           // buildingController.Initialize(buildingData);
 
             Debug.Log($"New entity type: {newEntity.GetType()}");
+            Debug.Log($"New name type: " + newEntity.data.buildingName);
+            Debug.Log($"New name type: " + buildingData.buildingName);
             if (buildingData is IMaintenanceEntity maintenanceEntity)
             {
                 Debug.Log($"Maintenance entity added to the list. List count: {resourceManager.maintenanceEntities.Count}");
@@ -101,28 +102,28 @@ public class BuildingManager : MonoBehaviour
             // Instantiate and add units to the buildingData object
             Debug.Log("buildingData type: " + buildingData.GetType()); // Add this line
 
-            if (buildingData is Residential1 residential1Data)
-            {
-                for (int i = 0; i < 4; i++)
-                {
-                    ResidentialUnit newResidentialUnit = Instantiate(residentialUnitDataTemplate);
-                    residential1Data.units.Add(newResidentialUnit);
-                    Debug.Log("Residential unit added.");
-                }
+            //if (buildingData is Residential1 residential1Data)
+            //{
+            //    for (int i = 0; i < 4; i++)
+            //    {
+            //        ResidentialUnit newResidentialUnit = Instantiate(residentialUnitDataTemplate);
+            //        residential1Data.units.Add(newResidentialUnit);
+            //        Debug.Log("Residential unit added.");
+            //    }
 
-                for (int i = 0; i < 6; i++)
-                {
-                    CommercialUnit newCommercialUnit = Instantiate(commercialUnitDataTemplate);
-                    residential1Data.units.Add(newCommercialUnit);
-                    Debug.Log("Commercial unit added.");
-                }
-            }
-            else if (buildingData is PortOfEntry portOfEntryData)
-            {
-                // APPLY INITIAL COST MODIFER
-                resourceManager.ApplyModifier(portOfEntryData.InitialCost, ResourceType.Cash, "construction");
-                resourceManager.AddToMaintenanceCosts(ResourceType.Cash, portOfEntryData.MaintenanceCost.maintenanceCost);
-            }
+            //    for (int i = 0; i < 6; i++)
+            //    {
+            //        CommercialUnit newCommercialUnit = Instantiate(commercialUnitDataTemplate);
+            //        residential1Data.units.Add(newCommercialUnit);
+            //        Debug.Log("Commercial unit added.");
+            //    }
+            //}
+            //else if (buildingData is PortOfEntry portOfEntryData)
+            //{
+            //    // APPLY INITIAL COST MODIFER
+            //    resourceManager.ApplyModifier(portOfEntryData.InitialCost, ResourceType.Cash, "construction");
+            //    resourceManager.AddToMaintenanceCosts(ResourceType.Cash, portOfEntryData.MaintenanceCost.maintenanceCost);
+            //}
 
             
         }
