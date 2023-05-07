@@ -3,7 +3,10 @@ guid: 063bf3b8ce8f22e4c89f5c2a4794320a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - buildingPrefab: {instanceID: 0}
+  - resourceManager: {instanceID: 0}
+  - costModifierData: {fileID: 11400000, guid: 58836c4cdc544e54d9a745dd9465a400, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -59,6 +59,7 @@ public class ResourceManager : MonoBehaviour
     public void ApplyModifier(ResourceModifierData modifier, ResourceType resourceType, string modifierType)
     {
         ResourceData targetResource = GetResourceByType(resourceType);
+        Debug.Log(targetResource);
         modifier.ApplyModifier(targetResource, modifierType);
     }
 

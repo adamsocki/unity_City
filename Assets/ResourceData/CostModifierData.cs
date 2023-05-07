@@ -7,6 +7,7 @@ public class CostModifierData : ResourceModifierData
     public float maintenanceCost;
     public float maintenanceInterval;
     public ResourceType resourceType;
+    public float cost;
 
 
 

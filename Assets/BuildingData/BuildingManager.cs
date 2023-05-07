@@ -56,8 +56,9 @@ public class BuildingManager : MonoBehaviour
                 break;
             case BuildingType.PortOfEntry:
                 newEntityPrefab = Instantiate(portOfEntryPrefab, position, rotation);
-                buildingData = portOfEntryData;
+                //buildingData = portOfEntryData;
                 Debug.Log("PortOfEntry buildingData assigned.");
+
                 break;
                 // Add more building types here
         }
@@ -75,32 +76,57 @@ public class BuildingManager : MonoBehaviour
             Building newEntity = newEntityPrefab.GetComponent<Building>();
             newEntity.data = buildingData; // Assign the building data
 
-            
+           
 
 
             newEntity.buildingID = Building.buildingIDCounter++;
             buildingTypeMap[buildingType].Add(newEntity);
             totalBuildingCount++;
-
-           // BuildingController buildingController = newEntity.GetComponent<BuildingController>();
-           // buildingController.Initialize(buildingData);
-
-            Debug.Log($"New entity type: {newEntity.GetType()}");
-            Debug.Log($"New name type: " + newEntity.data.buildingName);
-            Debug.Log($"New name type: " + buildingData.buildingName);
+            ResourceData resourceData = resourceManager.GetResourceByType(newEntity.data.CostModifierData.resourceType);
+            newEntity.data.CostModifierData.ApplyModifier(resourceData, "construction");
             if (buildingData is IMaintenanceEntity maintenanceEntity)
             {
-                Debug.Log($"Maintenance entity added to the list. List count: {resourceManager.maintenanceEntities.Count}");
-
-                // Assuming you have a reference to your ResourceManager instance called resourceManager
                 resourceManager.maintenanceEntities.Add(maintenanceEntity);
-               
+                resourceManager.AddToMaintenanceCosts(newEntity.data.CostModifierData.resourceType, newEntity.data.CostModifierData.maintenanceCost);
             }
+                        
 
+            // BuildingController buildingController = newEntity.GetComponent<BuildingController>();
+            // buildingController.Initialize(buildingData);
+
+            //Debug.Log($"New entity type: {newEntity.GetType()}");
+            //Debug.Log($"New name type: " + newEntity.data.buildingName);
+            //Debug.Log($"New name type: " + buildingData.buildingName);
+            //if (buildingData is IMaintenanceEntity maintenanceEntity)
+            //{
+            //    //Debug.Log($"Maintenance entity added to the list. List count: {resourceManager.maintenanceEntities.Count}");
+
+            //    // Assuming you have a reference to your ResourceManager instance called resourceManager
+            //    resourceManager.maintenanceEntities.Add(maintenanceEntity);
+            //    resourceManager.ApplyModifier(buildingData.InitialCost, ResourceType.Cash, "construction");
+            //    resourceManager.AddToMaintenanceCosts(ResourceType.Cash, buildingData.MaintenanceCost.maintenanceCost);
+
+            //}
+
+            //CostModifierData costData = ScriptableObject.CreateInstance<CostModifierData>();
+
+            //costData.constructionCost = 1000; // Replace this with the desired initial cost value
+            //costData.maintenanceCost = 100; // Replace this with the desired maintenance cost value
+            //costData.maintenanceInterval = 30; // Replace this with the desired maintenance interval value
+            //costData.resourceType = ResourceType.Cash;
+            //if (buildingData is PortOfEntry portOfEntryData)
+            //{
+            //    // Debug.Log("portofEntryData.InitialCost: " + portOfEntryData.InitialCost.constructionCost);
+            //     Debug.Log("portofEntryData.InitialCost: " + portOfEntryData.InitialCost);
+            //    ResourceData resourceData = resourceManager.GetResourceByType(costData.resourceType);
+            //    portOfEntryData.InitialCost.ApplyModifier(resourceData, "construction");
+
+            //    resourceManager.AddToMaintenanceCosts(costData.resourceType, costData.maintenanceCost);
+            //}
 
 
             // Instantiate and add units to the buildingData object
-            Debug.Log("buildingData type: " + buildingData.GetType()); // Add this line
+            //  Debug.Log("buildingData type: " + buildingData.GetType()); // Add this line
 
             //if (buildingData is Residential1 residential1Data)
             //{
@@ -125,7 +151,7 @@ public class BuildingManager : MonoBehaviour
             //    resourceManager.AddToMaintenanceCosts(ResourceType.Cash, portOfEntryData.MaintenanceCost.maintenanceCost);
             //}
 
-            
+
         }
     }
 

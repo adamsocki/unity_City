@@ -17,6 +17,10 @@ public class UIController : MonoBehaviour
     public ResourceManager resourceManager;
     public MouseInteractionManager mouseInteractionManager;
 
+
+    public BuildingCreationController portOfEntryBuildingCreationController;
+    public BuildingCreationController residentialBuildingCreationController;
+
     public TextMeshProUGUI timeText;
     public Button increaseTimeButton;
     public Button decreaseTimeButton;
@@ -45,6 +49,8 @@ public class UIController : MonoBehaviour
         increaseTimeButton.onClick.AddListener(IncreaseTimeScale);
         decreaseTimeButton.onClick.AddListener(DecreaseTimeScale);
         pauseTimeButton.onClick.AddListener(PauseTimeScale);
+        portOfEntryBuildingCreationController.InitBuildingCreationController();
+        residentialBuildingCreationController.InitBuildingCreationController();
     }
 
 
@@ -58,8 +64,7 @@ public class UIController : MonoBehaviour
                 {
                     return;
                 }
-                // Use the EntityManager to instantiate the object.
-                //entityManager.PlaceEntity(playerObjectPlacer.entityType, playerObjectPlacer.objectToPlace.transform.position, playerObjectPlacer.objectToPlace.transform.rotation, playerObjectPlacer.buildingType);
+              
                 entityManager.PlaceEntity(playerObjectPlacer);
             }
             else
@@ -111,7 +116,7 @@ public class UIController : MonoBehaviour
     }
 
 
-    public void SetPlaceableObject(GameObject objectPrefab, EntityFactory.EntityType entityType, BuildingType? buildingType = null, BuildingData buildingData = null)
+    public void SetPlaceableObject(GameObject objectPrefab, EntityFactory.EntityType entityType, BuildingType? buildingType = null, BuildingData? buildingData = null)
     {
         if (buildingType.HasValue)
         {

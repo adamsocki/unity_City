@@ -6,8 +6,8 @@ MonoImporter:
   defaultReferences:
   - buildingPrefab: {instanceID: 0}
   - resourceManager: {instanceID: 0}
-  - initialCost: {instanceID: 0}
-  - maintenanceCost: {instanceID: 0}
+  - initialCost: {fileID: 11400000, guid: 58836c4cdc544e54d9a745dd9465a400, type: 2}
+  - maintenanceCost: {fileID: 11400000, guid: 58836c4cdc544e54d9a745dd9465a400, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

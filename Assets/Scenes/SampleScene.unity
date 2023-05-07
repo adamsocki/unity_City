@@ -1646,6 +1646,8 @@ MonoBehaviour:
   buildingManager: {fileID: 641256032}
   resourceManager: {fileID: 730205436}
   mouseInteractionManager: {fileID: 989496775}
+  portOfEntryBuildingCreationController: {fileID: 1617134373}
+  residentialBuildingCreationController: {fileID: 176166865}
   timeText: {fileID: 2016030923}
   increaseTimeButton: {fileID: 1930825845}
   decreaseTimeButton: {fileID: 301016595}
@@ -2611,7 +2613,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 420647900}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -40.435, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4583,7 +4585,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: -40.435, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6235,7 +6237,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 971173636}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -40.435, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6335,7 +6337,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 976040653}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -40.435, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10204,7 +10206,7 @@ MonoBehaviour:
   fabricateNewBuildingButton: {fileID: 834110753}
   residentialUnitTotal: {fileID: 0}
   commercialUnitTotal: {fileID: 0}
-  buildingName: {fileID: 483964422}
+  buildingName: {fileID: 373166550}
   generateBuildingName: {fileID: 1700947523}
   buildingNameGenerator: {fileID: 2048138652}
   uiController: {fileID: 252649990}
@@ -11620,7 +11622,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1775091862
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14207,7 +14209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2030052928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14615,7 +14617,7 @@ GameObject:
   - component: {fileID: 2070196859}
   - component: {fileID: 2070196860}
   - component: {fileID: 2070196861}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Resident
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14630,7 +14632,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2070196852}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.966, y: 0, z: 0}
+  m_LocalPosition: {x: -41.401, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1.9741, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15305,7 +15307,6 @@ GameObject:
   - component: {fileID: 2137867721}
   - component: {fileID: 2137867720}
   - component: {fileID: 2137867719}
-  - component: {fileID: 2137867724}
   m_Layer: 6
   m_Name: PortOfEntry
   m_TagString: Untagged
@@ -15321,7 +15322,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2137867717}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.095, y: 0, z: 0}
+  m_LocalPosition: {x: -39.34, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15436,16 +15437,3 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2137867717}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2137867724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2137867717}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fd36bc99c0f1f842b910bc0428f217e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buildingData: {fileID: 11400000, guid: cf2ab1f2e1b36dd46bc3deb55444fa79, type: 2}

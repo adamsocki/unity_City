@@ -34,9 +34,12 @@ public class BuildingCreationController : MonoBehaviour
 
     public BuildingType buildingType;
 
+    public CostModifierData costData;
+
+
 
     // add listeners to all the buttons
-    void Start()
+    public void InitBuildingCreationController()
     {
         if (buildingType == BuildingType.Residential1)
         {
@@ -52,13 +55,10 @@ public class BuildingCreationController : MonoBehaviour
         initNewBuildingButton.onClick.AddListener(InitNewBuilding);
         fabricateNewBuildingButton.onClick.AddListener(FabricateNewBuilding);
 
-        //residentialUnits = 0;
-        // commercialUnits = 0;
     }
 
     private void GenerateBuildingName()
     {
-        //Debug.Log(buildingNameGenerator.GenerateRandomName());
         buildingName.text = buildingNameGenerator.GenerateRandomName(buildingType);
     }
 
@@ -94,12 +94,17 @@ public class BuildingCreationController : MonoBehaviour
 
     private void UpdateUnitTexts()
     {
+        if (buildingType == BuildingType.Residential1)
+        {
         residentialUnitTotal.text = "Residential Units: " + residentialUnits;
         commercialUnitTotal.text = "Commercial Units: " + commercialUnits;
+
+        }
     }
 
     private void InitNewBuilding()
     {
+        
         residentialUnits = 0;
         commercialUnits = 0;
         UpdateUnitTexts();
@@ -109,37 +114,44 @@ public class BuildingCreationController : MonoBehaviour
     private void FabricateNewBuilding()
     {
        
-        BuildingData buildingData = ScriptableObject.CreateInstance<BuildingData>();
-        buildingData.buildingName = buildingName.text;
+        /*BuildingData buildingData = ScriptableObject.CreateInstance<BuildingData>();
+        buildingData.buildingName = buildingName.text;*/
        
         switch (buildingType)
         {
             case BuildingType.PortOfEntry:
-                Debug.Log("try poe ");
-                uiController.SetPlaceableObject(portOfEntryBuildingPrefab, EntityFactory.EntityType.Building, buildingType, buildingData);
+                BuildingData portOfEntryBuildingData = ScriptableObject.CreateInstance<BuildingData>();
+                CostModifierData newInitialCost = ScriptableObject.CreateInstance<CostModifierData>();
+                portOfEntryBuildingData.buildingName = buildingName.text;
+                portOfEntryBuildingData.CostModifierData = newInitialCost;
+                //newInitialCost.constructionCost = 40;
+                portOfEntryBuildingData.ModifyInitialCost(40);
+                uiController.SetPlaceableObject(portOfEntryBuildingPrefab, EntityFactory.EntityType.Building, buildingType, portOfEntryBuildingData);
                 break;
-            case BuildingType.Residential1:
 
+            case BuildingType.Residential1:
+                Residential1 residential1BuildingData = ScriptableObject.CreateInstance<Residential1>();
                 for (int i = 0; i < residentialUnits; i++)
                 {
                     ResidentialUnit newResidentialUnit = Instantiate(residentialUnitDataTemplate);
-                    buildingData.units.Add(newResidentialUnit);
-                    Debug.Log("fabricateBuilding");
+                    residential1BuildingData.units.Add(newResidentialUnit);
+                    //Debug.Log("fabricateBuilding");
                 }
                 for (int i = 0; i < commercialUnits; i++)
                 {
                     CommercialUnit newCommercialUnit = Instantiate(commercialUnitDataTemplate);
-                    buildingData.units.Add(newCommercialUnit);
+                    residential1BuildingData.units.Add(newCommercialUnit);
                 }
 
-                uiController.SetPlaceableObject(residentialBuildingPrefab, EntityFactory.EntityType.Building, buildingType, buildingData);
+                uiController.SetPlaceableObject(residentialBuildingPrefab, EntityFactory.EntityType.Building, buildingType, residential1BuildingData);
+                residentialUnits = 0;
+                commercialUnits = 0;
                 break;
             default:
                 break;
         }
 
-        residentialUnits = 0;
-        commercialUnits = 0;
+       
         buildingName.text = "No Name";
         UpdateUnitTexts();
     }

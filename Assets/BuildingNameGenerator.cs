@@ -115,7 +115,7 @@ public class BuildingNameGenerator : MonoBehaviour
         switch (buildingType)
         {
             case BuildingType.PortOfEntry:
-                return GenerateResidentialBuildingName();
+                return GeneratePortOfEntryName();
             case BuildingType.Residential1:
                 return GenerateResidentialBuildingName();
             default:
