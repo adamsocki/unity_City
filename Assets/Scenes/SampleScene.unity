@@ -1234,6 +1234,7 @@ MonoBehaviour:
   residentialUnitDataTemplate: {fileID: 11400000, guid: e08b2214167cf5b47a14fd4c810d4495, type: 2}
   commercialUnitDataTemplate: {fileID: 11400000, guid: 928e0c770e1dc9946b02cd8239e2d390, type: 2}
   buildingType: 0
+  costData: {fileID: 0}
 --- !u!1 &187002113
 GameObject:
   m_ObjectHideFlags: 0
@@ -4051,7 +4052,7 @@ MonoBehaviour:
   residentialUnitDataTemplate: {fileID: 11400000, guid: e08b2214167cf5b47a14fd4c810d4495, type: 2}
   commercialUnitDataTemplate: {fileID: 11400000, guid: 928e0c770e1dc9946b02cd8239e2d390, type: 2}
   residentialBuildingData: {fileID: 11400000, guid: bc789ab0947a8b44ab4115edf79fccdf, type: 2}
-  portOfEntryData: {fileID: 11400000, guid: cf2ab1f2e1b36dd46bc3deb55444fa79, type: 2}
+  portOfEntryData: {fileID: 11400000, guid: 99463aa3f7e2afc4e9595a35d4c36f3e, type: 2}
   entityManager: {fileID: 228374453}
   resourceManager: {fileID: 730205436}
 --- !u!1 &659024717
@@ -6321,7 +6322,6 @@ GameObject:
   - component: {fileID: 976040658}
   - component: {fileID: 976040657}
   - component: {fileID: 976040656}
-  - component: {fileID: 976040655}
   m_Layer: 6
   m_Name: Residential1
   m_TagString: Untagged
@@ -6344,19 +6344,6 @@ Transform:
   m_Father: {fileID: 1507963829}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &976040655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 976040653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fd36bc99c0f1f842b910bc0428f217e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buildingData: {fileID: 11400000, guid: bc789ab0947a8b44ab4115edf79fccdf, type: 2}
 --- !u!114 &976040656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10215,6 +10202,7 @@ MonoBehaviour:
   residentialUnitDataTemplate: {fileID: 11400000, guid: e08b2214167cf5b47a14fd4c810d4495, type: 2}
   commercialUnitDataTemplate: {fileID: 11400000, guid: 928e0c770e1dc9946b02cd8239e2d390, type: 2}
   buildingType: 1
+  costData: {fileID: 0}
 --- !u!114 &1617134374
 MonoBehaviour:
   m_ObjectHideFlags: 0

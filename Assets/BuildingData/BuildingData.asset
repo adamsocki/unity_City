@@ -12,3 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 063bf3b8ce8f22e4c89f5c2a4794320a, type: 3}
   m_Name: BuildingData
   m_EditorClassIdentifier: 
+  buildingName: 
+  buildingPrefab: {fileID: 0}
+  units: []
+  resourceManager: {fileID: 0}
+  costModifierData: {fileID: 11400000, guid: 58836c4cdc544e54d9a745dd9465a400, type: 2}
