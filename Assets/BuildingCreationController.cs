@@ -27,18 +27,26 @@ public class BuildingCreationController : MonoBehaviour
 
     public UIController uiController;
     public GameObject residentialBuildingPrefab;
+    public GameObject portOfEntryBuildingPrefab;
 
     public ResidentialUnit residentialUnitDataTemplate;
     public CommercialUnit commercialUnitDataTemplate;
+
+    public BuildingType buildingType;
 
 
     // add listeners to all the buttons
     void Start()
     {
-        addResidentialUnitButton.onClick.AddListener(AddResidentialUnit);
-        removeResidentialUnitButton.onClick.AddListener(RemoveResidentialUnit);
-        addCommercialUnitButton.onClick.AddListener(AddCommercialUnit);
-        removeCommercialUnitButton.onClick.AddListener(RemoveCommercialUnit);
+        if (buildingType == BuildingType.Residential1)
+        {
+            addResidentialUnitButton.onClick.AddListener(AddResidentialUnit);
+            removeResidentialUnitButton.onClick.AddListener(RemoveResidentialUnit);
+            addCommercialUnitButton.onClick.AddListener(AddCommercialUnit);
+            removeCommercialUnitButton.onClick.AddListener(RemoveCommercialUnit);
+
+            UpdateUnitTexts();
+        }
         generateBuildingName.onClick.AddListener(GenerateBuildingName);
 
         initNewBuildingButton.onClick.AddListener(InitNewBuilding);
@@ -46,13 +54,12 @@ public class BuildingCreationController : MonoBehaviour
 
         //residentialUnits = 0;
         // commercialUnits = 0;
-        UpdateUnitTexts();
     }
 
     private void GenerateBuildingName()
     {
         //Debug.Log(buildingNameGenerator.GenerateRandomName());
-        buildingName.text = buildingNameGenerator.GenerateRandomName();
+        buildingName.text = buildingNameGenerator.GenerateRandomName(buildingType);
     }
 
     private void AddResidentialUnit()
@@ -101,23 +108,40 @@ public class BuildingCreationController : MonoBehaviour
 
     private void FabricateNewBuilding()
     {
-        // Your logic for fabricating a new building goes here
+       
         BuildingData buildingData = ScriptableObject.CreateInstance<BuildingData>();
         buildingData.buildingName = buildingName.text;
-        for (int i  = 0; i < residentialUnits; i++)
+       
+        switch (buildingType)
         {
-            ResidentialUnit newResidentialUnit = Instantiate(residentialUnitDataTemplate);
-            buildingData.units.Add(newResidentialUnit);
-          Debug.Log("fabricateBuilding");
-        }
-        for (int i = 0; i < commercialUnits; i++)
-        {
-            CommercialUnit newCommercialUnit = Instantiate(commercialUnitDataTemplate);
-            buildingData.units.Add(newCommercialUnit);
-        }
-        //  Debug.Log("fabricateBuilding");
+            case BuildingType.PortOfEntry:
+                Debug.Log("try poe ");
+                uiController.SetPlaceableObject(portOfEntryBuildingPrefab, EntityFactory.EntityType.Building, buildingType, buildingData);
+                break;
+            case BuildingType.Residential1:
 
-        uiController.SetPlaceableObject(residentialBuildingPrefab, EntityFactory.EntityType.Building, BuildingType.Residential1, buildingData);
+                for (int i = 0; i < residentialUnits; i++)
+                {
+                    ResidentialUnit newResidentialUnit = Instantiate(residentialUnitDataTemplate);
+                    buildingData.units.Add(newResidentialUnit);
+                    Debug.Log("fabricateBuilding");
+                }
+                for (int i = 0; i < commercialUnits; i++)
+                {
+                    CommercialUnit newCommercialUnit = Instantiate(commercialUnitDataTemplate);
+                    buildingData.units.Add(newCommercialUnit);
+                }
+
+                uiController.SetPlaceableObject(residentialBuildingPrefab, EntityFactory.EntityType.Building, buildingType, buildingData);
+                break;
+            default:
+                break;
+        }
+
+        residentialUnits = 0;
+        commercialUnits = 0;
+        buildingName.text = "No Name";
+        UpdateUnitTexts();
     }
 
 }

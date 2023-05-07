@@ -165,7 +165,7 @@ public class BuildingManager : MonoBehaviour
     {
         List<Building> buildings = buildingTypeMap[buildingType];
         int buildingCount = buildings.Count;
-
+        //Debug.Log(buildingCount);
         // Generate a random order for the indices
 
         List<int> indices = new List<int>();
@@ -188,18 +188,27 @@ public class BuildingManager : MonoBehaviour
 
         foreach (int index in indices)
         {
-            BuildingController buildingController = buildings[index].GetComponent<BuildingController>();
-
-            if (buildingController.buildingData is BuildingData buildingData)
+            Building building = buildings[index];
+            foreach (UnitData unit in building.data.units)
             {
-                foreach (UnitData unit in buildingData.units)
-                {
-                    if (unit is ResidentialUnit residentialUnit && !residentialUnit.isOccupied)
-                    {
-                        return (buildings[index], residentialUnit);
-                    }
-                }
+                if (unit is ResidentialUnit residentialUnit && !residentialUnit.isOccupied)
+               {
+                    Debug.Log("there are places to stay");
+                   return (buildings[index], residentialUnit);
+               }
             }
+            //BuildingController buildingController = buildings[index].GetComponent<BuildingController>();
+
+            //if (buildingController.buildingData is BuildingData buildingData)
+            //{
+            //    foreach (UnitData unit in buildingData.units)
+            //    {
+            //        if (unit is ResidentialUnit residentialUnit && !residentialUnit.isOccupied)
+            //        {
+            //            return (buildings[index], residentialUnit);
+            //        }
+            //    }
+            //}
         }
         return (null, null);
     }

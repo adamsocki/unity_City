@@ -3,6 +3,36 @@ using UnityEngine;
 public class BuildingNameGenerator : MonoBehaviour
 {
 
+
+    private string[] portNames = {
+    "Plymouth Rock",
+    "Roanoke",
+    "Jamestown",
+    "Sutter's Mill",
+    "Gettysburg",
+    "Ellis Island",
+    "Alcatraz",
+    "Little Bighorn",
+    "Wounded Knee",
+    "Appomattox Court House",
+    "Manhattan Project",
+    "Bikini Atoll",
+    "Pearl Harbor",
+    "Dealey Plaza",
+    "Three Mile Island",
+    "Kent State",
+    "Watergate",
+    "Love Canal",
+    "Ruby Ridge",
+    "Waco",
+    "Oklahoma City",
+    "World Trade Center",
+    "Katrina",
+    "Ferguson",
+    "Flint",
+    "Standing Rock"
+};
+    
     private string[] prefixes;
     private string[] adjectives;
     private string[] nouns;
@@ -13,6 +43,7 @@ public class BuildingNameGenerator : MonoBehaviour
 
     // Name generation weights
     public float[] weights = { 1, 1, 1, 1, 1, 1, 1, 1 };
+    public float[] weightsPOE = { 1, 1, 1, 1};
 
 
     void Start()
@@ -20,6 +51,12 @@ public class BuildingNameGenerator : MonoBehaviour
         LoadNameParts();
 
     }
+
+    // =================================
+    // =================================
+    // SECTION 1: GENERAL CODE
+    // =================================
+    // =================================
 
     private void LoadNameParts()
     {
@@ -47,7 +84,112 @@ public class BuildingNameGenerator : MonoBehaviour
         }
     }
 
-    public string GenerateRandomName()
+
+    private int GetWeightedRandom(float[] weights)
+    {
+        float totalWeight = 0;
+        foreach (float weight in weights)
+        {
+            totalWeight += weight;
+        }
+
+        float randomValue = Random.Range(0, totalWeight);
+        float weightSum = 0;
+
+        for (int i = 0; i < weights.Length; i++)
+        {
+            weightSum += weights[i];
+            if (randomValue < weightSum)
+            {
+                return i + 1;
+            }
+        }
+
+        return 1;
+    }
+
+
+    // ENTRY CODE FOR CLASS
+    public string GenerateRandomName(BuildingType buildingType)
+    {
+        switch (buildingType)
+        {
+            case BuildingType.PortOfEntry:
+                return GenerateResidentialBuildingName();
+            case BuildingType.Residential1:
+                return GenerateResidentialBuildingName();
+            default:
+                return "Unkown";
+        }
+
+    }
+
+
+    // =================================
+    // =================================
+    // SECTION 2: PORT OF ENTRY CODE
+    // =================================
+    // =================================
+
+    private string GeneratePortOfEntryName()
+    {
+        int nameType = GetWeightedRandom(weightsPOE);
+
+        switch (nameType)
+        {
+            case 0:
+                return GeneratePortType1();
+            case 1:
+                return GeneratePortType2();
+            case 2:
+                return GeneratePortType3();
+            case 3:
+                return GeneratePortType4();
+            default:
+                return "Unnamed Port";
+        }
+    }
+
+    private string GeneratePortType1()
+    {
+        string portName = portNames[Random.Range(0, portNames.Length)];
+        return portName;
+    }
+
+    private string GeneratePortType2()
+    {
+        string prefix = prefixes[Random.Range(0, prefixes.Length)];
+        string portName = portNames[Random.Range(0, portNames.Length)];
+
+        return string.Format("{0} {1}", prefix, portName).Trim();
+    }
+
+    private string GeneratePortType3()
+    {
+        string firstName = firstNames[Random.Range(0, firstNames.Length)];
+        string lastName = lastNames[Random.Range(0, lastNames.Length)];
+        string portName = portNames[Random.Range(0, portNames.Length)];
+
+        return string.Format("{0} {1}'s {2}", firstName, lastName, portName).Trim();
+    }
+
+    private string GeneratePortType4()
+    {
+        string adjective = adjectives[Random.Range(0, adjectives.Length)];
+        string portName = portNames[Random.Range(0, portNames.Length)];
+
+        return string.Format("{0} {1}", adjective, portName).Trim();
+    }
+
+
+    // =================================
+    // =================================
+    // SECTION 2: RESIDENTIAL CODE
+    // =================================
+    // =================================
+
+
+    private string GenerateResidentialBuildingName()
     {
         int nameType = GetWeightedRandom(weights);
 
@@ -145,27 +287,6 @@ public class BuildingNameGenerator : MonoBehaviour
         return string.Format("{0} at {1}", noun, location).Trim();
     }
 
-    private int GetWeightedRandom(float[] weights)
-    {
-        float totalWeight = 0;
-        foreach (float weight in weights)
-        {
-            totalWeight += weight;
-        }
-
-        float randomValue = Random.Range(0, totalWeight);
-        float weightSum = 0;
-
-        for (int i = 0; i < weights.Length; i++)
-        {
-            weightSum += weights[i];
-            if (randomValue < weightSum)
-            {
-                return i + 1;
-            }
-        }
-
-        return 1;
-    }
+    
 
 }
