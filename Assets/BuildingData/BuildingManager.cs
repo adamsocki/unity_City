@@ -26,11 +26,18 @@ public class BuildingManager : MonoBehaviour
 
     private Dictionary<BuildingType, List<Building>> buildingTypeMap = new Dictionary<BuildingType, List<Building>>();
 
+    private Dictionary<UnitData.UnitType, List<UnitData>> unitTypeMap = new Dictionary<UnitData.UnitType, List<UnitData>>();
     
 
     private int totalBuildingCount = 0;
 
     public int TotalBuildingCount { get { return totalBuildingCount; } }
+
+    private int totalResidentialUnitCount = 0;
+    private int totalCommercialUnitCount = 0;
+
+    public int TotalResidentialCount { get { return totalResidentialUnitCount; } }
+    public int TotalCommercialUnitCount { get { return totalCommercialUnitCount; } }
 
 
     public void InitBuildingManager()
@@ -89,7 +96,30 @@ public class BuildingManager : MonoBehaviour
                 resourceManager.maintenanceEntities.Add(maintenanceEntity);
                 resourceManager.AddToMaintenanceCosts(newEntity.data.CostModifierData.resourceType, newEntity.data.CostModifierData.maintenanceCost);
             }
-                        
+            
+            // loop through all units in the buildingData and add them to the unitTypeMap
+            foreach (UnitData unitData in buildingData.units)
+            {
+                if (!unitTypeMap.ContainsKey(unitData.unitType))
+                {
+                    unitTypeMap[unitData.unitType] = new List<UnitData>();
+                }
+                unitTypeMap[unitData.unitType].Add(unitData);
+                if (unitData is ResidentialUnit residentialUnitData)
+                {
+                    totalResidentialUnitCount++;
+                    Debug.Log("totalResidentCount");
+                }
+                else if (unitData is CommercialUnit commercialUnitData)
+                {
+                    totalCommercialUnitCount++;
+                }
+            }
+            
+            
+            
+
+            
 
             // BuildingController buildingController = newEntity.GetComponent<BuildingController>();
             // buildingController.Initialize(buildingData);
@@ -223,18 +253,6 @@ public class BuildingManager : MonoBehaviour
                    return (buildings[index], residentialUnit);
                }
             }
-            //BuildingController buildingController = buildings[index].GetComponent<BuildingController>();
-
-            //if (buildingController.buildingData is BuildingData buildingData)
-            //{
-            //    foreach (UnitData unit in buildingData.units)
-            //    {
-            //        if (unit is ResidentialUnit residentialUnit && !residentialUnit.isOccupied)
-            //        {
-            //            return (buildings[index], residentialUnit);
-            //        }
-            //    }
-            //}
         }
         return (null, null);
     }

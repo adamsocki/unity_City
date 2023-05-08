@@ -113,41 +113,47 @@ public class BuildingCreationController : MonoBehaviour
 
     private void FabricateNewBuilding()
     {
-       
-        /*BuildingData buildingData = ScriptableObject.CreateInstance<BuildingData>();
-        buildingData.buildingName = buildingName.text;*/
-       
+   
+        CostModifierData newInitialCost = ScriptableObject.CreateInstance<CostModifierData>();
+
         switch (buildingType)
         {
             case BuildingType.PortOfEntry:
+
                 BuildingData portOfEntryBuildingData = ScriptableObject.CreateInstance<BuildingData>();
-                CostModifierData newInitialCost = ScriptableObject.CreateInstance<CostModifierData>();
+
                 portOfEntryBuildingData.buildingName = buildingName.text;
                 portOfEntryBuildingData.CostModifierData = newInitialCost;
-                //newInitialCost.constructionCost = 40;
+                
                 portOfEntryBuildingData.ModifyInitialCost(40);
                 uiController.SetPlaceableObject(portOfEntryBuildingPrefab, EntityFactory.EntityType.Building, buildingType, portOfEntryBuildingData);
                 break;
 
             case BuildingType.Residential1:
-                Residential1 residential1BuildingData = ScriptableObject.CreateInstance<Residential1>();
+                BuildingData residential1BuildingData = ScriptableObject.CreateInstance<BuildingData>();
+
                 for (int i = 0; i < residentialUnits; i++)
                 {
                     ResidentialUnit newResidentialUnit = Instantiate(residentialUnitDataTemplate);
                     residential1BuildingData.units.Add(newResidentialUnit);
-                    //Debug.Log("fabricateBuilding");
-                }
+                   
+                } 
                 for (int i = 0; i < commercialUnits; i++)
                 {
                     CommercialUnit newCommercialUnit = Instantiate(commercialUnitDataTemplate);
                     residential1BuildingData.units.Add(newCommercialUnit);
                 }
-
+                residential1BuildingData.buildingName = buildingName.text; 
+                residential1BuildingData.CostModifierData = newInitialCost;
+                residential1BuildingData.ModifyInitialCost((residentialUnits * 10) + (commercialUnits * 20));
                 uiController.SetPlaceableObject(residentialBuildingPrefab, EntityFactory.EntityType.Building, buildingType, residential1BuildingData);
                 residentialUnits = 0;
                 commercialUnits = 0;
+
                 break;
+
             default:
+
                 break;
         }
 

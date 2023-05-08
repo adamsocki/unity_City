@@ -15,8 +15,11 @@ public class UIController : MonoBehaviour
     public EntityFactory entityFactory;
     public BuildingManager buildingManager;
     public ResourceManager resourceManager;
+    public ResidentManager residentManager;
     public MouseInteractionManager mouseInteractionManager;
 
+
+    public GameObject summaryDisplayPanel;
 
     public BuildingCreationController portOfEntryBuildingCreationController;
     public BuildingCreationController residentialBuildingCreationController;
@@ -35,8 +38,16 @@ public class UIController : MonoBehaviour
     public TextMeshProUGUI buildingCountText;
     public TextMeshProUGUI cashText;
 
+
+    public TextMeshProUGUI buildingCount;
+    public TextMeshProUGUI cash;
+    public TextMeshProUGUI residentialUnitTotal;
+    public TextMeshProUGUI commercialUnitTotal;
+    public TextMeshProUGUI residentTotal;
+
    // [HideInInspector]
-    public bool isInPlacementMode = false;
+    public bool isInPlacementMode = false; 
+    private bool displaySummary = false;
 
 
 
@@ -86,7 +97,39 @@ public class UIController : MonoBehaviour
 
         DisplayBuildingCount();
         DisplayCash();
+        
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            ToggleSummaryView();
+        }
+       
+        DisplaySummary();
+        
 
+
+    }
+
+    public void ToggleSummaryView() 
+    {
+        displaySummary = !displaySummary;
+        if (displaySummary)
+        {
+            // set display summary panel active
+            summaryDisplayPanel.SetActive(true);
+        }
+        else
+        {
+            // set display summary panel inactive
+            summaryDisplayPanel.SetActive(false);
+        }
+    }
+    public void DisplaySummary()
+    {
+        buildingCount.SetText("Building Count: " + buildingManager.GetBuildingCount());
+        cash.SetText("Cash: " + resourceManager.GetResourceByType(ResourceType.Cash).currentAmount);
+        residentialUnitTotal.SetText("Residential Unit Total: " + buildingManager.TotalResidentialCount);
+        commercialUnitTotal.SetText("Commercial Unit Total: " + buildingManager.TotalCommercialUnitCount);
+        residentTotal.SetText("Resident Total: " + residentManager.GetResidentCount());
     }
 
     public void DisplayBuildingCount()
