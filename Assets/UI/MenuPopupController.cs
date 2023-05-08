@@ -14,6 +14,7 @@ public class MenuPopupController : MonoBehaviour
     public TextMeshProUGUI resUnits;
     public TextMeshProUGUI comUnits;
 
+    [SerializeField] private RectTransform menuPopupRectTransform;
 
     public void ShowMenuPopup(bool show, Vector3 position)
     {
@@ -21,7 +22,8 @@ public class MenuPopupController : MonoBehaviour
 
         if (show)
         {
-            menuPopup.transform.position = position;
+            Vector3 offset = new Vector3(0, menuPopupRectTransform.rect.height * 0.5f * 0.01f, 0);
+            menuPopup.transform.position = position + offset;
         }
     }
 
@@ -35,17 +37,9 @@ public class MenuPopupController : MonoBehaviour
         {
             ShowMenuPopup(true, hit.point);
             GameObject hitObject = hit.collider.gameObject;
-            // if ()
-            //BuildingController buildingController = hitObject.GetComponent<BuildingController>();
-            //if (buildingController != null)
-            //{
-
-            //   //// Debug.Log("THis is a building");
-            //   // buildingName.text = buildingController.buildingData.buildingName;
-            //}
-
+            
             BuildingData buildingData = hitObject.GetComponent<Building>().data;
-            entityName.SetText("Name: " + buildingData.buildingName);
+            entityName.SetText(buildingData.buildingName);
             resUnits.SetText("Residential Units: " + buildingData.GetUnitCountByType(UnitData.UnitType.Residential));
             comUnits.SetText("Commercial Units: " + buildingData.GetUnitCountByType(UnitData.UnitType.Commercial));
 
