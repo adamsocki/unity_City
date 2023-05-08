@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class MenuPopupController : MonoBehaviour
@@ -9,9 +10,10 @@ public class MenuPopupController : MonoBehaviour
     public GameObject menuPopup;
     public LayerMask buildingLayer;
     public Camera mainCamera;
-    public Text buildingName;
+    public TextMeshProUGUI entityName;
+    public TextMeshProUGUI resUnits;
+    public TextMeshProUGUI comUnits;
 
- 
 
     public void ShowMenuPopup(bool show, Vector3 position)
     {
@@ -33,7 +35,7 @@ public class MenuPopupController : MonoBehaviour
         {
             ShowMenuPopup(true, hit.point);
             GameObject hitObject = hit.collider.gameObject;
-           // if ()
+            // if ()
             //BuildingController buildingController = hitObject.GetComponent<BuildingController>();
             //if (buildingController != null)
             //{
@@ -42,7 +44,10 @@ public class MenuPopupController : MonoBehaviour
             //   // buildingName.text = buildingController.buildingData.buildingName;
             //}
 
-            buildingName.text = hitObject.GetComponent<Building>().data.buildingName;
+            BuildingData buildingData = hitObject.GetComponent<Building>().data;
+            entityName.SetText("Name: " + buildingData.buildingName);
+            resUnits.SetText("Residential Units: " + buildingData.GetUnitCountByType(UnitData.UnitType.Residential));
+            comUnits.SetText("Commercial Units: " + buildingData.GetUnitCountByType(UnitData.UnitType.Commercial));
 
         }
         else

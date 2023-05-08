@@ -77,6 +77,7 @@ public class UIController : MonoBehaviour
                 }
               
                 entityManager.PlaceEntity(playerObjectPlacer);
+                TogglePlacementMode();
             }
             else
             { 
@@ -168,7 +169,7 @@ public class UIController : MonoBehaviour
         playerObjectPlacer.objectToPlace = objectPrefab;
         playerObjectPlacer.entityType = entityType;
         playerObjectPlacer.buildingData = buildingData;
-        Debug.Log("SetPlaceableObject");
+        
         TogglePlacementMode();
     }
 

@@ -96,30 +96,32 @@ public class BuildingManager : MonoBehaviour
                 resourceManager.maintenanceEntities.Add(maintenanceEntity);
                 resourceManager.AddToMaintenanceCosts(newEntity.data.CostModifierData.resourceType, newEntity.data.CostModifierData.maintenanceCost);
             }
-            
+
             // loop through all units in the buildingData and add them to the unitTypeMap
-            foreach (UnitData unitData in buildingData.units)
+            foreach (UnitData.UnitType unitType in buildingData.unitsByType.Keys)
             {
-                if (!unitTypeMap.ContainsKey(unitData.unitType))
+                if (!unitTypeMap.ContainsKey(unitType))
                 {
-                    unitTypeMap[unitData.unitType] = new List<UnitData>();
+                    unitTypeMap[unitType] = new List<UnitData>();
                 }
-                unitTypeMap[unitData.unitType].Add(unitData);
-                if (unitData is ResidentialUnit residentialUnitData)
+                unitTypeMap[unitType].AddRange(buildingData.unitsByType[unitType]);
+
+                if (unitType == UnitData.UnitType.Residential)
                 {
-                    totalResidentialUnitCount++;
+                    totalResidentialUnitCount += buildingData.unitsByType[unitType].Count;
                     Debug.Log("totalResidentCount");
                 }
-                else if (unitData is CommercialUnit commercialUnitData)
+                else if (unitType == UnitData.UnitType.Commercial)
                 {
-                    totalCommercialUnitCount++;
+                    totalCommercialUnitCount += buildingData.unitsByType[unitType].Count;
                 }
             }
-            
-            
-            
 
-            
+
+
+
+
+
 
             // BuildingController buildingController = newEntity.GetComponent<BuildingController>();
             // buildingController.Initialize(buildingData);
@@ -245,15 +247,19 @@ public class BuildingManager : MonoBehaviour
         foreach (int index in indices)
         {
             Building building = buildings[index];
-            foreach (UnitData unit in building.data.units)
+            foreach (UnitData.UnitType unitType in building.data.unitsByType.Keys)
             {
-                if (unit is ResidentialUnit residentialUnit && !residentialUnit.isOccupied)
-               {
-                    Debug.Log("there are places to stay");
-                   return (buildings[index], residentialUnit);
-               }
+                foreach (UnitData unit in building.data.unitsByType[unitType])
+                {
+                    if (unit is ResidentialUnit residentialUnit && !residentialUnit.isOccupied)
+                    {
+                        Debug.Log("there are places to stay");
+                        return (buildings[index], residentialUnit);
+                    }
+                }
             }
         }
+
         return (null, null);
     }
 

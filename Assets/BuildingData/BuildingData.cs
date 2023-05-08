@@ -6,11 +6,14 @@ public class BuildingData : ScriptableObject, IMaintenanceEntity
 {
     public string buildingName;
     public Building buildingPrefab;
-    public List<UnitData> units;
+    public Dictionary<UnitData.UnitType, List<UnitData>> unitsByType;
+
+
 
     public BuildingData()
     {
-        units = new List<UnitData>();
+        unitsByType = new Dictionary<UnitData.UnitType, List<UnitData>>();
+
 
     }
 
@@ -19,6 +22,23 @@ public class BuildingData : ScriptableObject, IMaintenanceEntity
 
     }
 
+    public void AddUnit(UnitData unit)
+    {
+        if (!unitsByType.ContainsKey(unit.unitType))
+        {
+            unitsByType[unit.unitType] = new List<UnitData>();
+        }
+        unitsByType[unit.unitType].Add(unit);
+    }
+
+    public int GetUnitCountByType(UnitData.UnitType unitType)
+    {
+        if (unitsByType.ContainsKey(unitType))
+        {
+            return unitsByType[unitType].Count;
+        }
+        return 0;
+    }
 
     public virtual void UpdateBuilding(Building building)
     {

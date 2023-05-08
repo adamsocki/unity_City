@@ -135,13 +135,13 @@ public class BuildingCreationController : MonoBehaviour
                 for (int i = 0; i < residentialUnits; i++)
                 {
                     ResidentialUnit newResidentialUnit = Instantiate(residentialUnitDataTemplate);
-                    residential1BuildingData.units.Add(newResidentialUnit);
-                   
-                } 
+                    residential1BuildingData.AddUnit(newResidentialUnit);
+                }
+
                 for (int i = 0; i < commercialUnits; i++)
                 {
                     CommercialUnit newCommercialUnit = Instantiate(commercialUnitDataTemplate);
-                    residential1BuildingData.units.Add(newCommercialUnit);
+                    residential1BuildingData.AddUnit(newCommercialUnit);
                 }
                 residential1BuildingData.buildingName = buildingName.text; 
                 residential1BuildingData.CostModifierData = newInitialCost;
