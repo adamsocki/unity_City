@@ -12,6 +12,8 @@ public class MovementController : MonoBehaviour
     public GameObject objectOwner;
     public ObjectType ownerObjectType;
 
+    private Resident residentOwner;
+
 
 
     public void InitMovementController()
@@ -22,6 +24,12 @@ public class MovementController : MonoBehaviour
         if (ownerObjectTypeInfo != null ) 
         { 
             ownerObjectType = ownerObjectTypeInfo.objectType;
+
+            if ( ownerObjectType == ObjectType.Resident ) 
+            {
+                residentOwner = objectOwner.GetComponent<Resident>();
+            }
+
         }
 
 
@@ -56,8 +64,10 @@ public class MovementController : MonoBehaviour
         // Do something when the object arrives at its destination
         if (ownerObjectType == ObjectType.Resident)
         {
-            moveCharacter = false;
+            residentOwner.OnArrival(); 
         }
+
+        moveCharacter = false;
 
     }
 
@@ -69,6 +79,10 @@ public class MovementController : MonoBehaviour
     // Add this function to start or stop the movement
     public void SetMoveCharacter(bool move)
     {
+        //if (ownerObjectType == ObjectType.Resident)
+        //{
+        //    residentOwner.OnDeparture();
+        //}
         moveCharacter = move;
     }
 }

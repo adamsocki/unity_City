@@ -71,8 +71,18 @@ public class ResidentManager : MonoBehaviour
         resident.InitResident();
 
         if (resident.residentData.hasHome)
-        { 
-            resident.MoveToDestination(buildingManager.GetLocationOfBuilding(resident.residentData.home));
+        {
+            resident.OnDeparture(resident.residentData.home);
+
+            //resident.OnDeparture(buildingManager.GetLocationOfBuilding(resident.residentData.home));
+            //resident.MoveToDestination(buildingManager.GetLocationOfBuilding(resident.residentData.home));
+        }
+        else
+        {
+            Building homeless = new Building();
+
+            
+            resident.OnDeparture(homeless);
         }
 
         residents.Add(resident);

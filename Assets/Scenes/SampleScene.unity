@@ -15668,6 +15668,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   residentData: {fileID: 11400000, guid: 5e37a488efadc1a48b72387a3dac8d51, type: 2}
   residentDataHolder: {fileID: 2070196861}
+  buildingManager: {fileID: 641256032}
 --- !u!114 &2070196861
 MonoBehaviour:
   m_ObjectHideFlags: 0

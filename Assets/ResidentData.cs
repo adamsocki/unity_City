@@ -19,6 +19,7 @@ public class ResidentData : ScriptableObject
     public CommercialUnit currentLocationCommercialUnit;
     public ResidentialUnit currentLocationResidentialUnit;
 
+    public bool isAtDestination;
     // is home
     public bool isHome;
     // is at work
