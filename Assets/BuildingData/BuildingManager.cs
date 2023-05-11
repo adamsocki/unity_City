@@ -24,9 +24,15 @@ public class BuildingManager : MonoBehaviour
     //private List<GameObject> residentialBuildings = new List<GameObject>();
     //private List<GameObject> portOfEntryBuildings = new List<GameObject>();
 
-    private Dictionary<BuildingType, List<Building>> buildingTypeMap = new Dictionary<BuildingType, List<Building>>();
+    
 
+    private Dictionary<BuildingType, List<Building>> buildingTypeMap = new Dictionary<BuildingType, List<Building>>();
+    
+    // unit manager
+   
     private Dictionary<UnitData.UnitType, List<UnitData>> unitTypeMap = new Dictionary<UnitData.UnitType, List<UnitData>>();
+
+
     
 
     private int totalBuildingCount = 0;
@@ -263,16 +269,64 @@ public class BuildingManager : MonoBehaviour
         return (null, null);
     }
 
+    public (Building, CommercialUnit) GetAvailableCommericalUnitsByBuildingType(BuildingType buildingType)
+    {
+        List<Building> buildings = buildingTypeMap[buildingType];
+        int buildingCount = buildings.Count;
+        //Debug.Log(buildingCount);
+        // Generate a random order for the indices
+
+        List<int> indices = new List<int>();
+        for (int i = 0; i < buildings.Count; i++)
+        {
+            indices.Add(i);
+        }
+
+        // Shuffle the indices
+        System.Random random = new System.Random();
+        int n = indices.Count;
+        while (n > 1)
+        {
+            n--;
+            int k = random.Next(n + 1);
+            int temp = indices[k];
+            indices[k] = indices[n];
+            indices[n] = temp;
+        }
+
+        foreach (int index in indices)
+        {
+            Building building = buildings[index];
+            foreach (UnitData.UnitType unitType in building.data.unitsByType.Keys)
+            {
+                foreach (UnitData unit in building.data.unitsByType[unitType])
+                {
+                    if (unit is CommercialUnit commercialUnit && !commercialUnit.isOccupied)
+                    {
+                        //Debug.Log("there are places to stay");
+                        return (buildings[index], commercialUnit);
+                    }
+                }
+            }
+        }
+
+        return (null, null);
+    }
+
     public void AssignResidencyToResident(Resident resident, (Building, ResidentialUnit) residency)
     {
         // Assign the building and residential unit to the resident's data
         resident.residentData.home = residency.Item1.GetComponent<Building>();
         resident.residentData.hasHome = true;
         resident.residentDataHolder.assignedHomeBuildingID = residency.Item1.buildingID;
-        resident.residentData.residentialUnit = residency.Item2;
+        resident.residentData.unitAssignedHome = residency.Item2;
         residency.Item2.isOccupied = true;
     }
     
+    public void AssignCommericalUnitToResident(Resident resident, (Building, CommercialUnit) commerical)
+    {
+        //resident.residentData
+    }
 
     public List<Building> GetBuildingsByType(BuildingType buildingType)
     {

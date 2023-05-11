@@ -30,7 +30,6 @@ public class ResidentManager : MonoBehaviour
 
         // Assign an available residential building as the resident's home
         (Building availableBuilding, ResidentialUnit residentialUnit) = buildingManager.GetAvailableResidenciesByBuildingType(BuildingType.Residential1);
-
         if (availableBuilding != null && residentialUnit != null)
         {
             buildingManager.AssignResidencyToResident(resident, (availableBuilding, residentialUnit));
@@ -40,6 +39,13 @@ public class ResidentManager : MonoBehaviour
             Debug.LogWarning("No available residential building found.");
         }
 
+        // assign CommericalUnit
+      //  (Building availableBuilding, CommercialUnit commercialUnit) = buildingManager.GetAvailableCommericalUnitsByBuildingType(BuildingType.Residential1);
+        //if (availableBuilding != null && commericalUnit != null)
+        //{
+        //    buildingManager.AssignCommericalUnitToResident(resident, (availableBuilding, commercialUnit));
+        //}
+        
         // Set other residentData properties
         // ...
     }
@@ -78,6 +84,19 @@ public class ResidentManager : MonoBehaviour
             entityComponent.SetHandle(handle);
         }
     }
+
+
+
+
+    
+
+
+
+
+
+
+
+
 
     public void UpdateResidents()
     {
