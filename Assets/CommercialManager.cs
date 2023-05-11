@@ -6,19 +6,8 @@ public class CommercialManager : MonoBehaviour
 {
    
     public ResidentManager residentManager;
+    public BuildingManager buildingManager;
 
-
-    // // singleton instance
-    // public static CommercialManager instance;
-
-    // // set singleton instance
-    // private void Awake()
-    // {
-    //     if (instance == null)
-    //     {
-    //         instance = this;
-    //     }
-    // }
 
     // list of all commercial units
     public List<CommercialUnit> commercialUnits = new List<CommercialUnit>();
@@ -47,6 +36,31 @@ public class CommercialManager : MonoBehaviour
     // list of all commercial units that are not for rent
     public List<CommercialUnit> notForRentUnits = new List<CommercialUnit>();
 
+
+
+    
+
+
+    public void TestAndAssignCommercialToResident(Resident resident)
+    {
+        // RUN TEST
+        bool canAssign = false;
+        (Building availableCommercialBuilding, CommercialUnit commercialUnit) = buildingManager.GetAvailableCommericalUnitsByBuildingType(BuildingType.Residential1);
+        if (availableCommercialBuilding != null && commercialUnit != null)
+        {
+            canAssign = true;
+        }
+
+        // ASSIGN
+        if (canAssign)
+        {
+            buildingManager.AssignCommericalUnitToResident(resident, (availableCommercialBuilding, commercialUnit));
+        } 
+        else
+        {
+            Debug.LogWarning("No available commercial building found.");
+        }
+    }
 
 
 

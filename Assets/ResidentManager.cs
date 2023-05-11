@@ -9,6 +9,7 @@ public class ResidentManager : MonoBehaviour
     
     public EntityManager entityManager;
     public BuildingManager buildingManager;
+    public CommercialManager commercialManager;
 
     private List<Resident> residents = new List<Resident>();
    
@@ -39,18 +40,21 @@ public class ResidentManager : MonoBehaviour
             Debug.LogWarning("No available residential building found.");
         }
 
-        // assign CommericalUnit
-        (Building availableCommercialBuilding, CommercialUnit commercialUnit) = buildingManager.GetAvailableCommericalUnitsByBuildingType(BuildingType.Residential1);
-        if (availableCommercialBuilding != null && commercialUnit != null)
-        {
-            buildingManager.AssignCommericalUnitToResident(resident, (availableCommercialBuilding, commercialUnit));
-        }
-        else
-        {
-            Debug.LogWarning("No available commercial building found.");
-        }
-        // Set other residentData properties
-        // ...
+        // ASSIGN CommericalUnit
+        commercialManager.TestAndAssignCommercialToResident(resident);
+
+
+        //(Building availableCommercialBuilding, CommercialUnit commercialUnit) = buildingManager.GetAvailableCommericalUnitsByBuildingType(BuildingType.Residential1);
+        //if (availableCommercialBuilding != null && commercialUnit != null)
+        //{
+        //    buildingManager.AssignCommericalUnitToResident(resident, (availableCommercialBuilding, commercialUnit));
+        //}
+        //else
+        //{
+        //    Debug.LogWarning("No available commercial building found.");
+        //}
+        //// Set other residentData properties
+        //// ...
     }
 
     public void SpawnResident()
