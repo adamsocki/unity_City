@@ -10,6 +10,7 @@ public class ResidentData : ScriptableObject
     public Building portOfEntry;
     public ResidentialUnit unitAssignedHome;
 
+    public Building work;
     public UnitData unitAssignedWork;
     public bool isEmployed;
 

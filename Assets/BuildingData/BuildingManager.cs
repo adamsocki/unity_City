@@ -323,9 +323,13 @@ public class BuildingManager : MonoBehaviour
         residency.Item2.isOccupied = true;
     }
     
-    public void AssignCommericalUnitToResident(Resident resident, (Building, CommercialUnit) commerical)
+    public void AssignCommericalUnitToResident(Resident resident, (Building, CommercialUnit) commercial)
     {
-        //resident.residentData
+        resident.residentData.work = commercial.Item1.GetComponent<Building>();
+        resident.residentData.isEmployed = true;
+        resident.residentDataHolder.assignedWorkBuildingID = commercial.Item1.buildingID;
+        resident.residentData.unitAssignedWork = commercial.Item2;
+        commercial.Item2.isOccupied = true;
     }
 
     public List<Building> GetBuildingsByType(BuildingType buildingType)

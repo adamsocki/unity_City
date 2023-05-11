@@ -29,10 +29,10 @@ public class ResidentManager : MonoBehaviour
         }
 
         // Assign an available residential building as the resident's home
-        (Building availableBuilding, ResidentialUnit residentialUnit) = buildingManager.GetAvailableResidenciesByBuildingType(BuildingType.Residential1);
-        if (availableBuilding != null && residentialUnit != null)
+        (Building availableResidentialBuilding, ResidentialUnit residentialUnit) = buildingManager.GetAvailableResidenciesByBuildingType(BuildingType.Residential1);
+        if (availableResidentialBuilding != null && residentialUnit != null)
         {
-            buildingManager.AssignResidencyToResident(resident, (availableBuilding, residentialUnit));
+            buildingManager.AssignResidencyToResident(resident, (availableResidentialBuilding, residentialUnit));
         }
         else
         {
@@ -40,12 +40,15 @@ public class ResidentManager : MonoBehaviour
         }
 
         // assign CommericalUnit
-      //  (Building availableBuilding, CommercialUnit commercialUnit) = buildingManager.GetAvailableCommericalUnitsByBuildingType(BuildingType.Residential1);
-        //if (availableBuilding != null && commericalUnit != null)
-        //{
-        //    buildingManager.AssignCommericalUnitToResident(resident, (availableBuilding, commercialUnit));
-        //}
-        
+        (Building availableCommercialBuilding, CommercialUnit commercialUnit) = buildingManager.GetAvailableCommericalUnitsByBuildingType(BuildingType.Residential1);
+        if (availableCommercialBuilding != null && commercialUnit != null)
+        {
+            buildingManager.AssignCommericalUnitToResident(resident, (availableCommercialBuilding, commercialUnit));
+        }
+        else
+        {
+            Debug.LogWarning("No available commercial building found.");
+        }
         // Set other residentData properties
         // ...
     }
@@ -84,18 +87,6 @@ public class ResidentManager : MonoBehaviour
             entityComponent.SetHandle(handle);
         }
     }
-
-
-
-
-    
-
-
-
-
-
-
-
 
 
     public void UpdateResidents()
