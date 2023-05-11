@@ -10,6 +10,8 @@ public class ResidentManager : MonoBehaviour
     public EntityManager entityManager;
     public BuildingManager buildingManager;
     public CommercialManager commercialManager;
+    
+    
 
     private List<Resident> residents = new List<Resident>();
    
@@ -20,6 +22,8 @@ public class ResidentManager : MonoBehaviour
     private void AssignResidentData(Resident resident)
     {
         resident.residentData = Instantiate(residentDataTemplate);
+
+        resident.GetComponent<ObjectTypeInfo>().objectType = ObjectType.Resident;
 
         // Assign an available port of entry building as the resident's port of entr
         Building portOfEntry = buildingManager.GetRandomBuildingByType(BuildingType.PortOfEntry);

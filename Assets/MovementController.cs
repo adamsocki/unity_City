@@ -8,7 +8,24 @@ public class MovementController : MonoBehaviour
     private float movementSpeed = 10.0f;
     private float stoppingDistance = 0.1f;
 
-    private bool moveCharacter;
+    public bool moveCharacter;
+    public GameObject objectOwner;
+    public ObjectType ownerObjectType;
+
+
+
+    public void InitMovementController()
+    {
+
+        //ownerObject = objectOwner.GetComponent<GameObject>();
+        ObjectTypeInfo ownerObjectTypeInfo = objectOwner.GetComponent<ObjectTypeInfo>();
+        if (ownerObjectTypeInfo != null ) 
+        { 
+            ownerObjectType = ownerObjectTypeInfo.objectType;
+        }
+
+
+    }
 
     public void UpdateMovementController()
     { 
@@ -30,8 +47,18 @@ public class MovementController : MonoBehaviour
         }
         else
         {
+            OnArrival();
+        }
+    }
+
+    private void OnArrival()
+    {
+        // Do something when the object arrives at its destination
+        if (ownerObjectType == ObjectType.Resident)
+        {
             moveCharacter = false;
         }
+
     }
 
     public void SetDestination(Vector3 newDestination)
