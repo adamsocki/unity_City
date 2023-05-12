@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DragImage : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DragImage : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
@@ -11,6 +11,16 @@ public class DragImage : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+
+    }
+
+    public void OnDropHandler(PointerEventData eventData)
+    {
+
     }
 
     public void OnBeginDrag(PointerEventData eventData)
