@@ -6,11 +6,13 @@ public class DragImage : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
 {
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
+    public Vector3 initialPosition;
 
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
+        initialPosition = transform.localPosition;
     }
 
     public void OnPointerDown(PointerEventData eventData)

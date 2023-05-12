@@ -36,6 +36,9 @@ public class BuildingCreationController : MonoBehaviour
 
     public CostModifierData costData;
 
+    public Image buildingTemplateIcon;
+    public Button buildingTemplateForgeButton;
+
 
 
     // add listeners to all the buttons
@@ -47,6 +50,7 @@ public class BuildingCreationController : MonoBehaviour
             removeResidentialUnitButton.onClick.AddListener(RemoveResidentialUnit);
             addCommercialUnitButton.onClick.AddListener(AddCommercialUnit);
             removeCommercialUnitButton.onClick.AddListener(RemoveCommercialUnit);
+            buildingTemplateForgeButton.onClick.AddListener(ForgeBuildingTemplateIcon);
 
             UpdateUnitTexts();
         }
@@ -56,6 +60,12 @@ public class BuildingCreationController : MonoBehaviour
         fabricateNewBuildingButton.onClick.AddListener(FabricateNewBuilding);
 
     }
+
+    private void ForgeBuildingTemplateIcon()
+    {
+        buildingTemplateIcon.gameObject.SetActive(true);
+    }
+
 
     private void GenerateBuildingName()
     {
