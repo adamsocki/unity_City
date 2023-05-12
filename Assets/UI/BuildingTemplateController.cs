@@ -44,34 +44,78 @@ public class BuildingTemplateController : MonoBehaviour
         UpdateUnits(ref commercialUnits, CommercialUnits, Color.blue);
     }
 
-    private void UpdateUnits(ref List<GameObject> unitList, int newCount, Color unitColor)
+  private void UpdateUnits(ref List<GameObject> unitList, int newCount, Color unitColor)
+{
+    // Remove extra units
+    while (unitList.Count > newCount)
     {
-        // Remove extra units
-        while (unitList.Count > newCount)
-        {
-            GameObject unitToRemove = unitList[unitList.Count - 1];
-            unitList.RemoveAt(unitList.Count - 1);
-            Destroy(unitToRemove);
-        }
-
-        // Add new units
-        while (unitList.Count < newCount)
-        {
-            // Calculate the row and column for this unit
-            int i = unitList.Count;
-            int row = i / maxUnitsPerRow;
-            int column = i % maxUnitsPerRow;
-
-            // Calculate the position for this unit
-            Vector3 position = new Vector3(column * columnSpacing, row * rowSpacing, 0);
-
-            // Instantiate the unit
-            GameObject unit = Instantiate(unitPrefab, position, Quaternion.identity, transform);
-            //unit.GetComponent<Renderer>().material.color = unitColor;
-
-            unitList.Add(unit);
-        }
+        GameObject unitToRemove = unitList[unitList.Count - 1];
+        unitList.RemoveAt(unitList.Count - 1);
+        Destroy(unitToRemove);
     }
+
+    // Add new units
+    while (unitList.Count < newCount)
+    {
+        // Calculate the row and column for this unit
+        int i = residentialUnits.Count + commercialUnits.Count;
+        int row = i / maxUnitsPerRow;
+        int column = i % maxUnitsPerRow;
+
+        // Calculate the position for this unit
+        Vector3 position = new Vector3(column * columnSpacing, row * rowSpacing, 0);
+
+        // Instantiate the unit
+        GameObject unit = Instantiate(unitPrefab, position, Quaternion.identity, transform);
+
+        unitList.Add(unit);
+    }
+
+    // Redraw all units
+    RedrawAllUnits();
+}
+
+private void RedrawAllUnits()
+{
+    // Combine the lists of units
+    List<GameObject> allUnits = new List<GameObject>(residentialUnits);
+    allUnits.AddRange(commercialUnits);
+
+    // Sort the units by their current position
+    allUnits.Sort((a, b) =>
+    {
+        int rowA = (int)(a.transform.position.y / rowSpacing);
+        int rowB = (int)(b.transform.position.y / rowSpacing);
+        int columnA = (int)(a.transform.position.x / columnSpacing);
+        int columnB = (int)(b.transform.position.x / columnSpacing);
+
+        if (rowA == rowB)
+        {
+            return columnA - columnB;
+        }
+        else
+        {
+            return rowA - rowB;
+        }
+    });
+
+    // Redraw the units
+    for (int i = 0; i < allUnits.Count; i++)
+    {
+        // Calculate the row and column for this unit
+        int row = i / maxUnitsPerRow;
+        int column = i % maxUnitsPerRow;
+
+        // Calculate the position for this unit
+        Vector3 position = new Vector3(column * columnSpacing, row * rowSpacing, 0);
+
+        // Set the position of the unit
+        GameObject unit = allUnits[i];
+        unit.transform.position = position;
+    }
+}
+
+
 
     
 
