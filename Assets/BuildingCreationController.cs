@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 
 public class BuildingCreationController : MonoBehaviour
 {
+    public BuildingTemplateController buildingTemplateController;
+
 
     public Button addResidentialUnitButton;
     public Button removeResidentialUnitButton;
@@ -75,6 +77,7 @@ public class BuildingCreationController : MonoBehaviour
     private void AddResidentialUnit()
     {
         residentialUnits++;
+        buildingTemplateController.ResidentialUnits = residentialUnits;
         UpdateUnitTexts();
     }
 
@@ -83,6 +86,7 @@ public class BuildingCreationController : MonoBehaviour
         if (residentialUnits > 0)
         {
             residentialUnits--;
+            buildingTemplateController.ResidentialUnits = residentialUnits;
             UpdateUnitTexts();
         }
     }
@@ -90,6 +94,7 @@ public class BuildingCreationController : MonoBehaviour
     private void AddCommercialUnit()
     {
         commercialUnits++;
+        buildingTemplateController.CommercialUnits = commercialUnits;
         UpdateUnitTexts();
     }
 
@@ -98,6 +103,7 @@ public class BuildingCreationController : MonoBehaviour
         if (commercialUnits > 0)
         {
             commercialUnits--;
+            buildingTemplateController.CommercialUnits = commercialUnits;
             UpdateUnitTexts();
         }
     }
