@@ -7,12 +7,17 @@ using UnityEngine.UI;
 public class DropImage : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 
 {
+    public bool containsBuilding = false;
+    public Button buildButton;
+
 
     public void OnDrop(PointerEventData eventData)
     {
         Debug.Log("OnDrop");
         if(eventData.pointerDrag != null)
         {
+            containsBuilding = true;
+            buildButton.gameObject.SetActive(true);
             eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
         }
     }
