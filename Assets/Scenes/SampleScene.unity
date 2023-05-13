@@ -3400,7 +3400,7 @@ GameObject:
   - component: {fileID: 472463562}
   m_Layer: 5
   m_Name: BuildingTemplate Slot (1)
-  m_TagString: Untagged
+  m_TagString: DropZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8818,6 +8818,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialPosition: {x: 0, y: 0, z: 0}
+  isInTemplatePosition: 0
 --- !u!225 &1315484959
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -11232,7 +11233,7 @@ GameObject:
   - component: {fileID: 1559515992}
   m_Layer: 5
   m_Name: BuildingTemplate Slot
-  m_TagString: Untagged
+  m_TagString: DropZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17811,7 +17812,7 @@ GameObject:
   - component: {fileID: 2099172582}
   m_Layer: 5
   m_Name: BuildingTemplate Slot (2)
-  m_TagString: Untagged
+  m_TagString: DropZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

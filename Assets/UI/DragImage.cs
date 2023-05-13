@@ -75,30 +75,5 @@ public class DragImage : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
             initialPosition = dropImage.transform.localPosition;
             rectTransform.anchoredPosition = initialPosition;
         }
-      
-        //if (isInTemplatePosition)
-        //{
-
-        //}
-        //else
-        //{
-        //    DropImage dropImage = eventData.pointerCurrentRaycast.gameObject.GetComponent<DropImage>();
-
-        //    if (!eventData.pointerCurrentRaycast.gameObject.CompareTag("DropZone"))
-        //    {
-        //        Debug.Log("check is null for DI");
-        //        rectTransform.anchoredPosition = initialPosition;
-        //        isInTemplatePosition = false;
-        //    }
-        //    else
-        //    {
-        //        isInTemplatePosition = true;
-        //    }
-        //}
-        
-
-        //return true;
     }
-
-
 }
