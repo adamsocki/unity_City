@@ -2,17 +2,19 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DragImage : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DragImage : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
 {
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
     public Vector3 initialPosition;
+    public bool isInTemplatePosition;
 
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         initialPosition = transform.localPosition;
+        isInTemplatePosition = false;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -20,9 +22,10 @@ public class DragImage : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
 
     }
 
-    public void OnDropHandler(PointerEventData eventData)
+    public void OnDrop(PointerEventData eventData)
     {
-
+       // CheckValidDropLocation(eventData);
+    
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -38,7 +41,64 @@ public class DragImage : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        CheckValidDropLocation(eventData);
         canvasGroup.blocksRaycasts = true;
         canvasGroup.alpha = 1f;
     }
+
+    private void CheckValidDropLocation(PointerEventData eventData)
+    {
+
+        if (eventData.pointerCurrentRaycast.gameObject == null)
+        {
+            rectTransform.anchoredPosition = initialPosition;
+            Debug.Log("Not over a valid object");
+            return;
+        }
+        DropImage dropImage = eventData.pointerCurrentRaycast.gameObject.GetComponentInParent<DropImage>();
+
+        //if (eventData.pointerCurrentRaycast.gameObject.GetType() != typeof(DropImage))
+        //{
+        //    rectTransform.anchoredPosition = initialPosition;
+        //    Debug.Log("not dropimage");
+        //    return; 
+        //}
+        if (dropImage == null)
+        {
+            rectTransform.anchoredPosition = initialPosition;
+            Debug.Log("not dropimage");
+            return;
+        }
+        else
+        {
+            isInTemplatePosition = true;
+            initialPosition = dropImage.transform.localPosition;
+            rectTransform.anchoredPosition = initialPosition;
+        }
+      
+        //if (isInTemplatePosition)
+        //{
+
+        //}
+        //else
+        //{
+        //    DropImage dropImage = eventData.pointerCurrentRaycast.gameObject.GetComponent<DropImage>();
+
+        //    if (!eventData.pointerCurrentRaycast.gameObject.CompareTag("DropZone"))
+        //    {
+        //        Debug.Log("check is null for DI");
+        //        rectTransform.anchoredPosition = initialPosition;
+        //        isInTemplatePosition = false;
+        //    }
+        //    else
+        //    {
+        //        isInTemplatePosition = true;
+        //    }
+        //}
+        
+
+        //return true;
+    }
+
+
 }
