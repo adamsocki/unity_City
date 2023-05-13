@@ -41,11 +41,35 @@ public class BuildingCreationController : MonoBehaviour
     public Image buildingTemplateIcon;
     public Button buildingTemplateForgeButton;
 
+    private bool isOpen = false;
+    public Image buildingTemplate;
+
+
+    public bool IsOpen
+    {
+        get { return isOpen; }
+        set
+        {
+            isOpen = value;
+            buildingTemplate.gameObject.SetActive(isOpen);
+        }
+    }
+
+    // Code so that isOpen to set gameObject.SetActive(isOpen)
+
+
+
+
+
+
+
+
 
 
     // add listeners to all the buttons
     public void InitBuildingCreationController()
     {
+       
         if (buildingType == BuildingType.Residential1)
         {
             addResidentialUnitButton.onClick.AddListener(AddResidentialUnit);
@@ -60,6 +84,9 @@ public class BuildingCreationController : MonoBehaviour
 
         initNewBuildingButton.onClick.AddListener(InitNewBuilding);
         fabricateNewBuildingButton.onClick.AddListener(FabricateNewBuilding);
+        
+        // debug line above
+        
 
     }
 

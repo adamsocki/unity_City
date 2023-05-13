@@ -49,6 +49,9 @@ public class UIController : MonoBehaviour
     public bool isInPlacementMode = false; 
     private bool displaySummary = false;
 
+    public Button residentialBuildingTemplateButton;
+    public BuildingCreationController residentialBuildingCreatorController;
+
 
 
     public void InitUIController()
@@ -60,8 +63,14 @@ public class UIController : MonoBehaviour
         increaseTimeButton.onClick.AddListener(IncreaseTimeScale);
         decreaseTimeButton.onClick.AddListener(DecreaseTimeScale);
         pauseTimeButton.onClick.AddListener(PauseTimeScale);
+        residentialBuildingTemplateButton.onClick.AddListener(ToggleResidentialBuildingCreatorTemplate);
         portOfEntryBuildingCreationController.InitBuildingCreationController();
         residentialBuildingCreationController.InitBuildingCreationController();
+    }
+     
+    public void ToggleResidentialBuildingCreatorTemplate()
+    {
+        residentialBuildingCreatorController.IsOpen = !residentialBuildingCreatorController.IsOpen;
     }
 
 
