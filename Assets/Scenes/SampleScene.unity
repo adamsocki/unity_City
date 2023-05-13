@@ -3091,6 +3091,7 @@ MonoBehaviour:
   age: 0
   total: 0
   totalResidentialUnits: 0
+  totalCommercialUnits: 0
   data: {fileID: 11400000, guid: 99463aa3f7e2afc4e9595a35d4c36f3e, type: 2}
   buildingID: 0
 --- !u!1 &421386326
@@ -3397,7 +3398,6 @@ GameObject:
   - component: {fileID: 472463564}
   - component: {fileID: 472463563}
   - component: {fileID: 472463562}
-  - component: {fileID: 472463567}
   m_Layer: 5
   m_Name: BuildingTemplate Slot (1)
   m_TagString: Untagged
@@ -3440,6 +3440,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   containsBuilding: 0
   buildButton: {fileID: 368848630}
+  buildingTemplateCreation: {fileID: 1942063384}
+  currentBuildingIcon: 1
+  building: {fileID: 0}
 --- !u!225 &472463563
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -3507,50 +3510,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 472463560}
   m_CullTransparentMesh: 1
---- !u!114 &472463567
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 472463560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 472463565}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &474954573
 GameObject:
   m_ObjectHideFlags: 0
@@ -8763,6 +8722,7 @@ GameObject:
   - component: {fileID: 1315484957}
   - component: {fileID: 1315484958}
   - component: {fileID: 1315484959}
+  - component: {fileID: 1315484960}
   m_Layer: 5
   m_Name: BuildingTemplateIcon
   m_TagString: Untagged
@@ -8870,6 +8830,25 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1315484960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315484953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8dd29bc3f9327418ee44623f904ffd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: 
+  age: 0
+  total: 0
+  totalResidentialUnits: 0
+  totalCommercialUnits: 0
+  data: {fileID: 0}
+  buildingID: 0
 --- !u!1 &1320452122
 GameObject:
   m_ObjectHideFlags: 0
@@ -11250,7 +11229,6 @@ GameObject:
   - component: {fileID: 1559515987}
   - component: {fileID: 1559515985}
   - component: {fileID: 1559515990}
-  - component: {fileID: 1559515991}
   - component: {fileID: 1559515992}
   m_Layer: 5
   m_Name: BuildingTemplate Slot
@@ -11361,50 +11339,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   containsBuilding: 0
   buildButton: {fileID: 1907934699}
---- !u!114 &1559515991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1559515983}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1559515988}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
+  buildingTemplateCreation: {fileID: 1942063384}
+  currentBuildingIcon: 0
+  building: {fileID: 0}
 --- !u!114 &1559515992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11417,6 +11354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aaafc7dbc3880f4091a9db8dd41e766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildingTemplateCreation: {fileID: 0}
 --- !u!1 &1574962042
 GameObject:
   m_ObjectHideFlags: 0
@@ -15154,7 +15092,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1907934700}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1942063384}
+        m_TargetAssemblyTypeName: BuildingTemplateCreation, Assembly-CSharp
+        m_MethodName: FabricateBuilding
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1907934700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15461,9 +15411,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67fd0d0dc0092e94483bfea16ec5dbcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingCreationButton1: {fileID: 1559515991}
-  buildingCreationButton2: {fileID: 472463567}
-  buildingCreationButton3: {fileID: 2099172587}
+  buildingData:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  residentialBuildingPrefab: {fileID: 442853838}
+  uiController: {fileID: 252649990}
+  residentialUnitDataTemplate: {fileID: 11400000, guid: e08b2214167cf5b47a14fd4c810d4495, type: 2}
+  commercialUnitDataTemplate: {fileID: 11400000, guid: 928e0c770e1dc9946b02cd8239e2d390, type: 2}
+  buildingCreationButton1: {fileID: 1907934699}
+  buildingCreationButton2: {fileID: 368848630}
+  buildingCreationButton3: {fileID: 120710541}
 --- !u!1 &1947786675
 GameObject:
   m_ObjectHideFlags: 0
@@ -17851,7 +17809,6 @@ GameObject:
   - component: {fileID: 2099172584}
   - component: {fileID: 2099172583}
   - component: {fileID: 2099172582}
-  - component: {fileID: 2099172587}
   m_Layer: 5
   m_Name: BuildingTemplate Slot (2)
   m_TagString: Untagged
@@ -17894,6 +17851,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   containsBuilding: 0
   buildButton: {fileID: 120710541}
+  buildingTemplateCreation: {fileID: 1942063384}
+  currentBuildingIcon: 2
+  building: {fileID: 0}
 --- !u!225 &2099172583
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -17961,50 +17921,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2099172580}
   m_CullTransparentMesh: 1
---- !u!114 &2099172587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2099172580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 2099172585}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &2106030259
 GameObject:
   m_ObjectHideFlags: 0

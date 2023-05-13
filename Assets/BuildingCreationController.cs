@@ -59,13 +59,6 @@ public class BuildingCreationController : MonoBehaviour
 
 
 
-
-
-
-
-
-
-
     // add listeners to all the buttons
     public void InitBuildingCreationController()
     {
@@ -93,6 +86,37 @@ public class BuildingCreationController : MonoBehaviour
     private void ForgeBuildingTemplateIcon()
     {
         buildingTemplateIcon.gameObject.SetActive(true);
+
+
+
+
+        BuildingData residential1BuildingData = ScriptableObject.CreateInstance<BuildingData>();
+        CostModifierData newInitialCost = ScriptableObject.CreateInstance<CostModifierData>();
+
+
+        //for (int i = 0; i < residentialUnits; i++)
+        //{
+        //    ResidentialUnit newResidentialUnit = Instantiate(residentialUnitDataTemplate);
+        //    residential1BuildingData.AddUnit(newResidentialUnit);
+        //}
+
+        //for (int i = 0; i < commercialUnits; i++)
+        //{
+        //    CommercialUnit newCommercialUnit = Instantiate(commercialUnitDataTemplate);
+        //    residential1BuildingData.AddUnit(newCommercialUnit);
+        //}
+        residential1BuildingData.buildingName = buildingName.text;
+        residential1BuildingData.CostModifierData = newInitialCost;
+        residential1BuildingData.ModifyInitialCost((residentialUnits * 10) + (commercialUnits * 20));
+        //uiController.SetPlaceableObject(residentialBuildingPrefab, EntityFactory.EntityType.Building, buildingType, residential1BuildingData);
+      
+
+        buildingTemplateIcon.GetComponent<Building>().data = residential1BuildingData;
+        buildingTemplateIcon.GetComponent<Building>().totalResidentialUnits = residentialUnits;
+        buildingTemplateIcon.GetComponent<Building>().totalCommercialUnits = commercialUnits;
+
+        residentialUnits = 0;
+        commercialUnits = 0;
     }
 
 
@@ -156,7 +180,7 @@ public class BuildingCreationController : MonoBehaviour
 
     private void FabricateNewBuilding()
     {
-   
+    
         CostModifierData newInitialCost = ScriptableObject.CreateInstance<CostModifierData>();
 
         switch (buildingType)

@@ -106,6 +106,27 @@ public class BuildingData : ScriptableObject, IMaintenanceEntity
         // Check if the entity has maintenance costs (return true if it has maintenance costs, false otherwise)
         return true;
     }
+
+
+
+
+    public BuildingData Clone()
+    {
+        BuildingData clone = ScriptableObject.CreateInstance<BuildingData>();
+
+        clone.buildingName = this.buildingName;
+        clone.buildingPrefab = this.buildingPrefab;
+        clone.resourceManager = this.resourceManager;
+        clone.CostModifierData = Instantiate(this.CostModifierData);
+
+        foreach (KeyValuePair<UnitData.UnitType, List<UnitData>> pair in this.unitsByType)
+        {
+            clone.unitsByType[pair.Key] = new List<UnitData>(pair.Value); // shallow copy
+        }
+
+        return clone;
+    }
+
 }
 
 

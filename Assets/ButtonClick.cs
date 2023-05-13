@@ -6,6 +6,9 @@ using UnityEngine.EventSystems;
 
 public class ButtonClick : MonoBehaviour, IPointerClickHandler
 {
+    public BuildingTemplateCreation buildingTemplateCreation;
+
+
 
     private void RightClick()
     {
@@ -19,4 +22,6 @@ public class ButtonClick : MonoBehaviour, IPointerClickHandler
             RightClick();
         }
     }
+
+
 }

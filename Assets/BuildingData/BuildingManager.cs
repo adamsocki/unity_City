@@ -103,9 +103,12 @@ public class BuildingManager : MonoBehaviour
                 resourceManager.AddToMaintenanceCosts(newEntity.data.CostModifierData.resourceType, newEntity.data.CostModifierData.maintenanceCost);
             }
 
+            int i = 0;
             // loop through all units in the buildingData and add them to the unitTypeMap
             foreach (UnitData.UnitType unitType in buildingData.unitsByType.Keys)
             {
+              //  i++;
+               // Debug.Log(i);
                 if (!unitTypeMap.ContainsKey(unitType))
                 {
                     unitTypeMap[unitType] = new List<UnitData>();
@@ -115,7 +118,7 @@ public class BuildingManager : MonoBehaviour
                 if (unitType == UnitData.UnitType.Residential)
                 {
                     totalResidentialUnitCount += buildingData.unitsByType[unitType].Count;
-                    Debug.Log("totalResidentCount");
+                    Debug.Log(totalResidentialUnitCount);
                 }
                 else if (unitType == UnitData.UnitType.Commercial)
                 {

@@ -9,7 +9,10 @@ public class DropImage : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
 {
     public bool containsBuilding = false;
     public Button buildButton;
-
+    public BuildingTemplateCreation buildingTemplateCreation;
+    public int currentBuildingIcon;
+    
+    public Building building;
 
     public void OnDrop(PointerEventData eventData)
     {
@@ -19,6 +22,7 @@ public class DropImage : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
             containsBuilding = true;
             buildButton.gameObject.SetActive(true);
             eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
+            buildingTemplateCreation.buildingData[currentBuildingIcon] = eventData.pointerDrag.GetComponent<Building>();
         }
     }
 
