@@ -1450,9 +1450,11 @@ MonoBehaviour:
   commercialUnitDataTemplate: {fileID: 11400000, guid: 928e0c770e1dc9946b02cd8239e2d390, type: 2}
   buildingType: 0
   costData: {fileID: 0}
-  buildingTemplateIcon: {fileID: 1315484955}
+  buildingTemplateIconPrefab: {fileID: 0}
   buildingTemplateForgeButton: {fileID: 89869354}
   buildingTemplate: {fileID: 1503155238}
+  buildingTemplateContainer: {fileID: 1942063384}
+  imagePrefab: {fileID: 1315484953}
 --- !u!1 &187002113
 GameObject:
   m_ObjectHideFlags: 0
@@ -8729,7 +8731,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1315484954
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8747,7 +8749,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 281.89996, y: -185.99998}
+  m_AnchoredPosition: {x: 281.89996, y: -408.5}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1315484955
@@ -11741,9 +11743,11 @@ MonoBehaviour:
   commercialUnitDataTemplate: {fileID: 11400000, guid: 928e0c770e1dc9946b02cd8239e2d390, type: 2}
   buildingType: 1
   costData: {fileID: 0}
-  buildingTemplateIcon: {fileID: 0}
+  buildingTemplateIconPrefab: {fileID: 1315484953}
   buildingTemplateForgeButton: {fileID: 0}
   buildingTemplate: {fileID: 0}
+  buildingTemplateContainer: {fileID: 1942063384}
+  imagePrefab: {fileID: 1315484953}
 --- !u!114 &1617134374
 MonoBehaviour:
   m_ObjectHideFlags: 0

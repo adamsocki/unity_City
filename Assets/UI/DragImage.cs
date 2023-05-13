@@ -13,7 +13,7 @@ public class DragImage : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
-        initialPosition = transform.localPosition;
+        //initialPosition = transform.localPosition;
         isInTemplatePosition = false;
     }
 

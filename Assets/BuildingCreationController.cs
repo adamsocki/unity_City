@@ -38,11 +38,13 @@ public class BuildingCreationController : MonoBehaviour
 
     public CostModifierData costData;
 
-    public Image buildingTemplateIcon;
+    public GameObject buildingTemplateIconPrefab;
     public Button buildingTemplateForgeButton;
 
     private bool isOpen = false;
     public Image buildingTemplate;
+
+    public BuildingTemplateCreation buildingTemplateContainer;
 
 
     public bool IsOpen
@@ -83,9 +85,26 @@ public class BuildingCreationController : MonoBehaviour
 
     }
 
+    [SerializeField] private GameObject imagePrefab;
+
+    private GameObject newBuildingTemplateIcon;
+
     private void ForgeBuildingTemplateIcon()
     {
-        buildingTemplateIcon.gameObject.SetActive(true);
+        newBuildingTemplateIcon = Instantiate(imagePrefab);
+
+        // Assuming the parent is a Canvas or another UI element
+        newBuildingTemplateIcon.transform.SetParent(buildingTemplateContainer.transform, false);
+        RectTransform rectTransform = newBuildingTemplateIcon.GetComponent<RectTransform>();
+        rectTransform.anchoredPosition = new Vector3(281.9f, -186.0f, -0.15f); // Center of the parent
+        newBuildingTemplateIcon.GetComponent<DragImage>().initialPosition = rectTransform.anchoredPosition;
+        //newBuildingTemplateIcon.transform.position = new Vector3(281.9f, -186.0f, -0.15f)
+
+        //GameObject newBuildingTemplateIcon = Instantiate(buildingTemplateIconPrefab);
+        //newBuildingTemplateIcon.SetActive(true);
+        //newBuildingTemplateIcon.transform.position = new Vector3(0,0,0);
+
+
 
 
 
@@ -94,26 +113,14 @@ public class BuildingCreationController : MonoBehaviour
         CostModifierData newInitialCost = ScriptableObject.CreateInstance<CostModifierData>();
 
 
-        //for (int i = 0; i < residentialUnits; i++)
-        //{
-        //    ResidentialUnit newResidentialUnit = Instantiate(residentialUnitDataTemplate);
-        //    residential1BuildingData.AddUnit(newResidentialUnit);
-        //}
-
-        //for (int i = 0; i < commercialUnits; i++)
-        //{
-        //    CommercialUnit newCommercialUnit = Instantiate(commercialUnitDataTemplate);
-        //    residential1BuildingData.AddUnit(newCommercialUnit);
-        //}
         residential1BuildingData.buildingName = buildingName.text;
         residential1BuildingData.CostModifierData = newInitialCost;
         residential1BuildingData.ModifyInitialCost((residentialUnits * 10) + (commercialUnits * 20));
-        //uiController.SetPlaceableObject(residentialBuildingPrefab, EntityFactory.EntityType.Building, buildingType, residential1BuildingData);
-      
 
-        buildingTemplateIcon.GetComponent<Building>().data = residential1BuildingData;
-        buildingTemplateIcon.GetComponent<Building>().totalResidentialUnits = residentialUnits;
-        buildingTemplateIcon.GetComponent<Building>().totalCommercialUnits = commercialUnits;
+
+        newBuildingTemplateIcon.GetComponent<Building>().data = residential1BuildingData;
+        newBuildingTemplateIcon.GetComponent<Building>().totalResidentialUnits = residentialUnits;
+        newBuildingTemplateIcon.GetComponent<Building>().totalCommercialUnits = commercialUnits;
 
         residentialUnits = 0;
         commercialUnits = 0;
