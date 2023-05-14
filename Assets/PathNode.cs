@@ -11,6 +11,8 @@ public class PathNode
     public int hCost;
     public int fCost;
 
+    public PathNode() { } // This is the parameterless constructor
+
     public PathNode(bool isWalkable, int x, int z)
     {
         this.isWalkable = isWalkable;

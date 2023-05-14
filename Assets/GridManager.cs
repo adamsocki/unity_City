@@ -2,18 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class GridManager : MonoBehaviour
 {
 
-    private Grid grid;  
-    public int width = 10;  
-    public int height = 10;  
+
+
+    private Grid<PathNode> grid;  
+    public int width;  
+    public int height;  
     public float cellSize = 1f;
 
     public void Start()
     {
-        grid = new Grid(width, height, cellSize, Vector3.zero);
+        grid = new Grid<PathNode>(width, height, cellSize, Vector3.zero);
+
+        for (int i = 0; i < 30; i ++)
+        {
+            grid.SetWalkable(i +10, i,  false);
+
+        }
     }
+
+
+    public void UpdateGrid()
+    {
+
+    }
+
+
+    public void DetectObstacles()
+    {
+
+    }
+
+
 
     private void OnDrawGizmos()
     {

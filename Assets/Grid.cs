@@ -1,15 +1,18 @@
 using UnityEngine;
 
-public class Grid
+
+
+
+public class Grid<T> where T : PathNode, new()
 {
-     private int width;
+    private int width;
     private int height;
     private float cellSize;
-    private PathNode[,] gridArray;
+    private T[,] gridArray;
     private Vector3 originPosition;
-
-    // write getters for width, height, cellSize
    
+
+
     public int Width
     {
         get { return width; }
@@ -34,18 +37,51 @@ public class Grid
         this.cellSize = cellSize;
         this.originPosition = originPosition;
 
-        gridArray = new PathNode[width, height];
+        gridArray = new T[width, height];
 
         for (int x = 0; x < gridArray.GetLength(0); x++)
         {
             for (int z = 0; z < gridArray.GetLength(1); z++)
             {
-                gridArray[x, z] = new PathNode(true, x, z);
+                gridArray[x, z] = new T();
             }
         }
     }
 
-    public PathNode GetPathNode(int x, int z)
+    public T GetGridObject(int x, int z)
+    {
+        if (x >= 0 && z >= 0 && x < width && z < height)
+        {
+            return gridArray[x, z];
+        }
+        else
+        {
+            return default(T);
+        }
+    }
+    public T GetGridObjectFromWorldPosition(Vector3 worldPosition)
+    {
+        int x = Mathf.FloorToInt((worldPosition.x - originPosition.x) / cellSize);
+        int z = Mathf.FloorToInt((worldPosition.z - originPosition.z) / cellSize);
+        return GetGridObject(x, z);
+    }
+
+
+    // set the node to be walkable or not
+    public void SetWalkable(int x, int z, bool isWalkable)
+    {
+        if (x >= 0 && z >= 0 && x < width && z < height)
+        {
+            gridArray[x, z].isWalkable = isWalkable;
+        }
+    }
+
+    public void DetectBuilding()
+    {
+
+    }
+
+    public T GetPathNode(int x, int z)
     {
         if (x >= 0 && z >= 0 && x < width && z < height)
         {
@@ -57,7 +93,7 @@ public class Grid
         }
     }
 
-    public PathNode GetNodeFromWorldPosition(Vector3 worldPosition)
+    public T GetNodeFromWorldPosition(Vector3 worldPosition)
     {
         int x = Mathf.FloorToInt((worldPosition.x - originPosition.x) / cellSize);
         int z = Mathf.FloorToInt((worldPosition.z - originPosition.z) / cellSize);
