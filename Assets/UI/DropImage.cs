@@ -14,6 +14,8 @@ public class DropImage : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
     
     public Building building;
 
+    public bool isArchiver;
+
     public void OnDrop(PointerEventData eventData)
     {
         Debug.Log("OnDrop");
@@ -33,6 +35,23 @@ public class DropImage : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
             eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = dragImage.initialPosition;
             return;
         }
+
+        if (isArchiver)
+        {
+            DragImage dragImageToArchive = eventData.pointerDrag.GetComponent<DragImage>();
+            
+            DropImage dropImageToArchive = dragImageToArchive.dropImageSlot;
+            dropImageToArchive.containsBuilding = false;
+            dropImageToArchive.building = null;
+            dropImageToArchive.buildButton.gameObject.SetActive(false);
+
+            eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = new Vector3(-1000.0f, -1000.0f, -1000.0f);
+            dragImageToArchive.isInTemplatePosition = false;
+            dragImageToArchive.isArchived = true;
+
+            return;
+        }
+
 
         if (eventData.pointerDrag != null)
         {

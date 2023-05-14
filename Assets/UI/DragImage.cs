@@ -8,6 +8,10 @@ public class DragImage : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
     private CanvasGroup canvasGroup;
     public Vector3 initialPosition;
     public bool isInTemplatePosition;
+    public DropImage dropImageSlot;
+    public bool isArchived;
+    public int archiveIndex;
+
 
     private void Awake()
     {
@@ -55,7 +59,12 @@ public class DragImage : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
             Debug.Log("Not over a valid object");
             return;
         }
+
         DropImage dropImage = eventData.pointerCurrentRaycast.gameObject.GetComponentInParent<DropImage>();
+        if (dropImage.isArchiver)
+        {
+            return;
+        }
 
         //if (eventData.pointerCurrentRaycast.gameObject.GetType() != typeof(DropImage))
         //{
@@ -74,6 +83,7 @@ public class DragImage : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, 
             isInTemplatePosition = true;
             initialPosition = dropImage.transform.localPosition;
             rectTransform.anchoredPosition = initialPosition;
+            dropImageSlot = dropImage;
         }
     }
 }
