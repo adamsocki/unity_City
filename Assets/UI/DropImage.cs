@@ -49,6 +49,9 @@ public class DropImage : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
             dragImageToArchive.isInTemplatePosition = false;
             dragImageToArchive.isArchived = true;
 
+            buildingTemplateCreation.buildingData[dropImageToArchive.currentBuildingIcon] = new Building();
+
+
             return;
         }
 
