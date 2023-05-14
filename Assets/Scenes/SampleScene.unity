@@ -7459,6 +7459,7 @@ GameObject:
   - component: {fileID: 976040658}
   - component: {fileID: 976040657}
   - component: {fileID: 976040656}
+  - component: {fileID: 976040661}
   m_Layer: 6
   m_Name: Residential1
   m_TagString: Untagged
@@ -7526,7 +7527,7 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &976040659
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7577,6 +7578,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 976040653}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &976040661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976040653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a45a8f41c7e99142bc710f37ca0eff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectType: 1
 --- !u!1 &989496773
 GameObject:
   m_ObjectHideFlags: 0
@@ -15849,7 +15863,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  residentialBuildingPrefab: {fileID: 442853838}
+  residentialBuildingPrefab: {fileID: 976040653}
   uiController: {fileID: 252649990}
   residentialUnitDataTemplate: {fileID: 11400000, guid: e08b2214167cf5b47a14fd4c810d4495, type: 2}
   commercialUnitDataTemplate: {fileID: 11400000, guid: 928e0c770e1dc9946b02cd8239e2d390, type: 2}

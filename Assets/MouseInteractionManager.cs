@@ -98,16 +98,19 @@ public class MouseInteractionManager : MonoBehaviour
         // Check for overlaps using Physics.OverlapBox
         int layerMask = BuildLayerMaskWithoutPreviewObjectAndGround();
         Collider[] colliders = Physics.OverlapBox(bounds.center, bounds.extents, Quaternion.identity, layerMask);
-
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            Debug.Log(colliders[i].gameObject.name);
+        }
         // If there are overlapping colliders, return true
         if (colliders.Length > 0)
         {
-           // Debug.Log("Overlap detected");
+            Debug.Log("Overlap detected");
             return true;
         }
 
         // No overlaps found, return false
-        //Debug.Log("Overlap not detected");
+        Debug.Log("Overlap not detected");
         return false;
     }
 

@@ -80,6 +80,7 @@ public class BuildingManager : MonoBehaviour
         {
             // GameObject newEntityInstance = Instantiate(newEntityPrefab, position, rotation);
             newEntityPrefab.layer = LayerMask.NameToLayer("Building");
+            Debug.Log("LayerNamed building");
             EntityManager.Handle handle = entityManager.AddEntity(newEntityPrefab);
             Entity entityComponent = newEntityPrefab.GetComponent<Entity>();
             entityComponent.SetHandle(handle);

@@ -44,6 +44,8 @@ public class BuildingTemplateCreation : MonoBehaviour
         }
 
         uiController.SetPlaceableObject(residentialBuildingPrefab, EntityFactory.EntityType.Building, BuildingType.Residential1, newResidentialBuildingData);
+
+
     }
     
 
