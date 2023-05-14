@@ -27,12 +27,12 @@ public class DropImage : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
         //    }
         //    return;
         //}
-        //if (AlreadyContainsBuilding())
-        //{
-        //    DragImage dragImage = eventData.pointerDrag.GetComponent<DragImage>();
-        //    eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = dragImage.initialPosition;
-        //    return;
-        //}
+        if (AlreadyContainsBuilding())
+        {
+            DragImage dragImage = eventData.pointerDrag.GetComponent<DragImage>();
+            eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = dragImage.initialPosition;
+            return;
+        }
 
         if (eventData.pointerDrag != null)
         {
@@ -76,7 +76,7 @@ public class DropImage : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
     {
         if (eventData.pointerDrag != null)
         {
-            eventData.pointerDrag.GetComponent<CanvasGroup>().alpha = 0.6f;
+            //eventData.pointerDrag.GetComponent<CanvasGroup>().alpha = 0.6f;
         }
     }
 
