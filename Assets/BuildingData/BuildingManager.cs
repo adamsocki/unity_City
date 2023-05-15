@@ -20,6 +20,8 @@ public class BuildingManager : MonoBehaviour
 
     public EntityManager entityManager;
     public ResourceManager resourceManager;
+
+    public GridManager gridManager;
     //private List<BuildingInfo> buildings = new List<BuildingInfo>();
     //private List<GameObject> residentialBuildings = new List<GameObject>();
     //private List<GameObject> portOfEntryBuildings = new List<GameObject>();
@@ -126,6 +128,31 @@ public class BuildingManager : MonoBehaviour
                     totalCommercialUnitCount += buildingData.unitsByType[unitType].Count;
                 }
             }
+
+            // SET THE GRID
+            Bounds bounds = newEntityPrefab.GetComponent<MeshRenderer>().bounds;
+            Vector3[] corners = new Vector3[4];
+
+            corners[0] = bounds.center + new Vector3(bounds.extents.x, 0, bounds.extents.z);
+            corners[1] = bounds.center + new Vector3(-bounds.extents.x, 0, bounds.extents.z);
+            corners[2] = bounds.center + new Vector3(-bounds.extents.x, 0, -bounds.extents.z);
+            corners[3] = bounds.center + new Vector3(bounds.extents.x, 0, -bounds.extents.z);
+
+
+
+            foreach(Vector3 corner in corners)
+            {
+                PathNode node = gridManager.grid.GetNodeFromWorldPosition(corner);
+                if (node != null)
+                {
+                    node.isWalkable = false;
+                }
+                Debug.DrawLine(corner, Vector3.up, Color.blue, 20) ;
+
+            }
+
+
+
         }
     }
 

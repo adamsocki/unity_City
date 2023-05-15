@@ -7,28 +7,31 @@ using UnityEngine;
 public class GridManager : MonoBehaviour
 {
 
+    public LayerMask layerMask;
 
-
-    private Grid<PathNode> grid;  
+    public Grid<PathNode> grid;  
     public int width;  
     public int height;  
     public float cellSize = 1f;
+    public Vector3 startingPosition;
 
     public void Start()
     {
-        grid = new Grid<PathNode>(width, height, cellSize, Vector3.zero);
+        grid = new Grid<PathNode>(width, height, cellSize, startingPosition);
 
-        for (int i = 0; i < 30; i ++)
+        for (int x = 0; x < grid.Width; x++)
         {
-            grid.SetWalkable(i +10, i,  false);
-
+            for (int z = 0; z < grid.Height; z++)
+            {
+                grid.SetWalkable(x, z, true);
+            }
         }
     }
 
 
-    public void UpdateGrid()
+    public void Update()
     {
-
+        //grid.DetectBuilding(layerMask);
     }
 
 
@@ -54,7 +57,9 @@ public class GridManager : MonoBehaviour
 
                     // Draw a small cube at the position of the node
                     Vector3 pathNodePos = grid.GetWorldPositionFromNode(pathNode);
-                    Gizmos.DrawCube(pathNodePos, Vector3.one * (grid.CellSize - 0.1f)); // Subtract a small amount to create a grid effect
+                    //Gizmos.DrawCube(pathNodePos, Vector3.one * (grid.CellSize)); // Subtract a small amount to create a grid effect
+                   // Gizmos.DrawCube(pathNodePos, Vector3.one * (grid.CellSize - 0.1f)); // Subtract a small amount to create a grid effect
+
                 }
             }
         }

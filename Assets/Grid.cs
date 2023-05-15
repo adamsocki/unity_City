@@ -43,7 +43,7 @@ public class Grid<T> where T : PathNode, new()
         {
             for (int z = 0; z < gridArray.GetLength(1); z++)
             {
-                gridArray[x, z] = new T();
+                gridArray[x, z] = (T)new PathNode(true, x, z);
             }
         }
     }
@@ -76,9 +76,23 @@ public class Grid<T> where T : PathNode, new()
         }
     }
 
-    public void DetectBuilding()
+    public void DetectBuilding(LayerMask layerMask)
     {
-
+        for (int x = 0;  x < width; x++)
+        {
+            for (int z = 0; z < height; z++)
+            {
+                Vector3 worldPositionWithSize = GetWorldPositionFromNode(GetGridObject(x, z));
+                if (Physics.CheckSphere(worldPositionWithSize, cellSize, layerMask))
+                {
+                    SetWalkable(x, z, false);
+                }
+                else
+                {
+                    SetWalkable(x, z, true);
+                }
+            }
+        }
     }
 
     public T GetPathNode(int x, int z)
@@ -104,5 +118,7 @@ public class Grid<T> where T : PathNode, new()
     {
         return new Vector3(pathNode.x * cellSize + originPosition.x, 0, pathNode.z * cellSize + originPosition.z);
     }
+
+    
 }
 

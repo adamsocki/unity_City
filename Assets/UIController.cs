@@ -52,6 +52,8 @@ public class UIController : MonoBehaviour
     public Button residentialBuildingTemplateButton;
     public BuildingCreationController residentialBuildingCreatorController;
 
+    public Button genericBuildingTemplateButton;
+    public BuildingCreationController genericBuildingCreatorController;
 
 
     public void InitUIController()
@@ -64,6 +66,7 @@ public class UIController : MonoBehaviour
         decreaseTimeButton.onClick.AddListener(DecreaseTimeScale);
         pauseTimeButton.onClick.AddListener(PauseTimeScale);
         residentialBuildingTemplateButton.onClick.AddListener(ToggleResidentialBuildingCreatorTemplate);
+        genericBuildingTemplateButton.onClick.AddListener(ToggleGenericBuildingCreatorTemplate);
         portOfEntryBuildingCreationController.InitBuildingCreationController();
         residentialBuildingCreationController.InitBuildingCreationController();
     }
@@ -73,6 +76,10 @@ public class UIController : MonoBehaviour
         residentialBuildingCreatorController.IsOpen = !residentialBuildingCreatorController.IsOpen;
     }
 
+    public void ToggleGenericBuildingCreatorTemplate()
+    {
+        genericBuildingCreatorController.IsOpen = !genericBuildingCreatorController.IsOpen;
+    }
 
     public void UpdateUI()
     { 
