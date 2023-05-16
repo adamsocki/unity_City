@@ -10,6 +10,7 @@ public class Building : Entity
     public int total;
     public int totalResidentialUnits;
     public int totalCommercialUnits;
+    public string stringBuildingType;
 
     public BuildingData data;
     public static int buildingIDCounter = 10;
